@@ -1,0 +1,253 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+/* keymap.htm - SynApp2 driver page
+**
+   +======================================================================+
+   | SynApp2 Version 1                                                    |
+   +======================================================================+
+   | Copyright (c) 2007 - 2010 Richard Howell. All rights reserved.       |
+   +======================================================================+
+   | This source file is subject to version 1.01 of the SynApp2 license,  |
+   | that is bundled with this package in the file LICENSE, and is        |
+   | available through the world-wide-web at the following url:           |
+   | http://www.synapp2.org/license/1_01.txt                              |
+   | If you did not receive a copy of the SynApp2 license and are unable  |
+   | to obtain it through the world-wide-web, please send a note to       |
+   | license@synapp2.org so we can mail you a copy immediately.           |
+   +======================================================================+
+   | Authors: Richard Howell                                              |
+   |                                                                      |
+   +======================================================================+
+**
+** http://www.synapp2.org
+**
+** $Id: keymap.htm,v 1.11 2010/07/13 20:58:15 richard Exp $
+*/
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>
+SynApp2 Keymap
+</title>
+
+<link rel="stylesheet" type="text/css" href="standard.css">
+
+<script type="text/javascript" src="synapp2.js"></script>
+<script type="text/javascript" src="webtoolkit.js"></script>
+
+<!-- //// -->
+
+<script type="text/javascript">
+
+set_appid('synapp2');
+set_pid('keymap');
+
+var QID_SHOW = '_keymap_show_';
+var QID_PROCESS = '_keymap_process_';
+
+////
+
+function page_init()
+{
+    do_init();
+    do_app_nav('id_app_nav');
+    map_vkey_action('id_tbar_appid_db', VKEY_ENTER, on_change_appid, true);
+    set_input_text_value('id_tbar_appid_db', get_mark_appid_db());
+    set_focus('id_tbar_appid_db');
+    show_content();
+}
+
+function on_change_appid()
+{
+    set_mark_appid_db(get_input_text_value('id_tbar_appid_db'));
+    set_focus('id_tbar_appid_db');
+    show_content();
+}
+
+function on_change_tab_name(active_tab_name)
+{
+    show_content(active_tab_name);
+}
+
+function show_content(active_tab_name)
+{
+    set_extra_arg(get_pid(), ALT_APPID, get_mark_appid_db());
+
+    if (typeof active_tab_name != 'string')
+    {
+        active_tab_name = get_cookie('active_tab_name');
+    }
+    else
+    {
+        set_session_cookie('active_tab_name', active_tab_name);
+    }
+
+    do_sub_nav('id_tbar_select_qid', active_tab_name, 'on_change_tab_name');
+
+    var cxlref = new cxl();
+
+    cxlref.set_container('id_page_container');
+//    cxlref.set_show_response(true);
+    cxlref.set_request_mode_adhoc();
+    set_extra_arg(QID_SHOW, 'active_tab_name', active_tab_name);
+    cxlref.send_request(QID_SHOW);
+}
+
+function submit_keymap()
+{
+    var cxlref = new cxl();
+
+    if (cxlref)
+    {
+        cxlref.set_container('id_page_container');
+//        cxlref.set_show_response(true);
+        cxlref.set_request_mode_adhoc();
+        set_extra_arg(QID_PROCESS, 'active_tab_name', get_cookie('active_tab_name'));
+        cxlref.send_request(QID_PROCESS);
+    }
+}
+
+</script>
+
+<!-- //// -->
+
+<style type="text/css">
+
+#id_body
+{
+    background:url(../_shared_/img/bg_graph_paper.gif);
+}
+
+#id_sub_nav_action
+{
+    margin:0em;
+    border:0em;
+    padding:0em;
+    background:transparent;
+    vertical-align:middle;
+}
+
+#id_sub_nav_action:hover
+{
+    cursor:pointer;
+}
+
+.class_keymap table
+{
+    margin:0em;
+    padding:0em;
+    margin-top:1px;
+    margin-left:1px;
+    border:2px solid mediumslateblue;
+}
+
+.class_keymap td,
+.class_keymap tr
+{
+    margin:0em;
+    padding:.25em;
+    width:12em;
+    border-style:solid;
+    border-width:1px;
+    border-color:mediumslateblue;
+    background-color:white;
+    text-align:center;
+}
+
+.class_keymap_table_name
+{
+    font-size:125%;
+    text-align:left;
+    margin:0em;
+    padding:1em;
+    background-color:mediumslateblue;
+}
+
+.class_keymap_select
+{
+    margin:0em;
+    padding:.5em;
+}
+
+</style>
+
+<!-- //// -->
+
+</head>
+<body style="background: transparent url(&quot;../_shared_/img/bg_graph_paper.gif&quot;) repeat scroll 0% 0%; cursor: default;" id="id_body" onload="page_init();">
+
+<h3>SynApp2</h3>
+
+<div style="display: block;" id="id_app_nav" class="class_app_nav">
+<ul id="nav">
+<li id="id__nav__keymap"><a href="keymap.htm" class="class_nav_active">KeyMap</a></li>
+<li id="id__nav__options"><a href="options.htm" class="class_nav_inactive">Options</a></li>
+<li id="id__nav__pagegen"><a href="pagegen.htm" class="class_nav_inactive">PageGen</a></li>
+<li id="id__nav__tools"><a href="tools.htm" class="class_nav_inactive">Tools</a></li>
+<!--li id="id__nav__engines"><a href="engines.htm" class="class_nav_inactive">Engines</a></li-->
+<!--li id="id__nav__reports"><a href="reports.htm?appid=synapp2" class="class_nav_inactive">Reports</a></li-->
+<li id="id__nav__logout"><a href="welcome.htm" class="class_nav_inactive">Logout</a></li>
+</ul>
+</div>
+
+<p id="id_tbar">
+<label>AppID (or database):</label><input value="msds" id="id_tbar_appid_db" name="_request_appid_" type="text">
+<button id="id_sub_nav_action" onclick="on_change_appid();" title="Apply (AppID)"><img src="img/action_nav_select.gif" alt="Apply (AppID)"></button>
+<label>QueryID (or table):</label><span style="display: inline;" id="id_tbar_select_qid">
+<select name="keymap_sub_nav_options" onchange="on_change_tab_name(this.value);">
+<option value="location">location
+</option><option value="product_locations">product_locations
+</option><option value="product_type">product_type
+</option><option value="msds" selected="selected">msds
+</option><option value="supplier">supplier
+</option><option value="product">product
+</option><option value="date">date
+</option><option value="msds_(by_product)">msds_(by_product) (msds)
+</option><option value="products_(by_location)">products_(by_location) (product_locations)
+</option></select>
+</span>
+</p>
+
+<div id="id_page_content" class="class_page_content">
+
+<div id="id_page_container">
+<div class="class_keymap">
+<table id="id_table_msds" cellspacing="0">
+<thead>
+<tr><th class="class_keymap_table_name" colspan="6"><strong>msds.msds</strong></th></tr>
+<tr><th>Primary   Foreign</th><th>Col Name</th><th>Join Table</th><th>Join Col</th><th>Validation</th><th>Values</th></tr>
+</thead>
+<tbody>
+<tr><td><input name="_pkey_" value="msds.id" type="radio"><input name="_fkey_" value="msds.id" type="radio"></td><td>id (PK)</td><td>msds</td><td>id</td><td><input name="~validation~msds~id" title="Comment field" size="10" type="text"><input name="_ckey_" value="msds.id" type="radio"></td><td><input name="~value~msds~id" title="Enum values" size="10" type="text"><input name="_vkey_" value="msds.id" type="radio"></td></tr>
+<tr><td><input name="_pkey_" value="msds.effective_date" type="radio"><input name="_fkey_" value="msds.effective_date" type="radio"></td><td>effective_date</td><td></td><td></td><td><input name="~validation~msds~effective_date" title="Comment field" value="EFFECTIVE_DATE" size="10" type="text"><input name="_ckey_" value="msds.effective_date" type="radio"></td><td><input name="~value~msds~effective_date" title="Enum values" size="10" type="text"><input name="_vkey_" value="msds.effective_date" type="radio"></td></tr>
+<tr><td><input name="_pkey_" value="msds.expiry_date" type="radio"><input name="_fkey_" value="msds.expiry_date" type="radio"></td><td>expiry_date</td><td></td><td></td><td><input name="~validation~msds~expiry_date" title="Comment field" size="10" type="text"><input name="_ckey_" value="msds.expiry_date" type="radio"></td><td><input name="~value~msds~expiry_date" title="Enum values" size="10" type="text"><input name="_vkey_" value="msds.expiry_date" type="radio"></td></tr>
+<tr><td><input name="_pkey_" value="msds.document_link" type="radio"><input name="_fkey_" value="msds.document_link" type="radio"></td><td>document_link</td><td></td><td></td><td><input name="~validation~msds~document_link" title="Comment field" value="ADDINGCOMMENT" size="10" type="text"><input name="_ckey_" value="msds.document_link" type="radio"></td><td><input name="~value~msds~document_link" title="Enum values" size="10" type="text"><input name="_vkey_" value="msds.document_link" type="radio"></td></tr>
+<tr><td><input name="_pkey_" value="msds.msds_status" type="radio"><input name="_fkey_" value="msds.msds_status" type="radio"></td><td>msds_status</td><td></td><td></td><td><input name="~validation~msds~msds_status" title="Comment field" size="10" type="text"><input name="_ckey_" value="msds.msds_status" type="radio"></td><td><input name="~value~msds~msds_status" title="Enum values" size="10" type="text"><input name="_vkey_" value="msds.msds_status" type="radio"></td></tr>
+<tr><td><input name="_pkey_" value="msds.id_product" type="radio"><input name="_fkey_" value="msds.id_product" type="radio"></td><td>id_product (FK1)</td><td>product</td><td>id</td><td><input name="~validation~msds~id_product" title="Comment field" size="10" type="text"><input name="_ckey_" value="msds.id_product" type="radio"></td><td><input name="~value~msds~id_product" title="Enum values" size="10" type="text"><input name="_vkey_" value="msds.id_product" type="radio"></td></tr>
+</tbody>
+<tfoot>
+<tr><th colspan="1">Submit</th><th></th><th class="class_keymap_select" colspan="2">
+<select name="_jkey_msds" title="Select &lt;JoinTable.JoinCol&gt;" onchange="submit_keymap();">
+<option selected="selected" value="">
+</option><option value="location.id">location.id
+</option><option value="product_locations.id">product_locations.id
+</option><option value="product_type.id">product_type.id
+</option><option value="supplier.id">supplier.id
+</option><option value="product.id">product.id
+</option><option value="date.id">date.id
+</option><option value="delete"> -- delete -- 
+</option></select>
+</th></tr>
+</tfoot>
+</table>
+</div>
+</div>
+
+<div id="id_page_msg" class="class_msg_std"><a id="id_crumb_" href="msds.htm">Jump to: msds, page  Msds</a></div>
+
+</div><!-- id_page_content -->
+
+
+
+</body></html>

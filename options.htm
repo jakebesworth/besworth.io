@@ -1,0 +1,377 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+/* options.htm - SynApp2 driver page
+**
+   +======================================================================+
+   | SynApp2 Version 1                                                    |
+   +======================================================================+
+   | Copyright (c) 2007 - 2010 Richard Howell. All rights reserved.       |
+   +======================================================================+
+   | This source file is subject to version 1.01 of the SynApp2 license,  |
+   | that is bundled with this package in the file LICENSE, and is        |
+   | available through the world-wide-web at the following url:           |
+   | http://www.synapp2.org/license/1_01.txt                              |
+   | If you did not receive a copy of the SynApp2 license and are unable  |
+   | to obtain it through the world-wide-web, please send a note to       |
+   | license@synapp2.org so we can mail you a copy immediately.           |
+   +======================================================================+
+   | Authors: Richard Howell                                              |
+   |                                                                      |
+   +======================================================================+
+**
+** http://www.synapp2.org
+**
+** $Id: options.htm,v 1.10 2010/07/17 01:55:44 richard Exp $
+*/
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>
+SynApp2 Options
+</title>
+
+<link rel="stylesheet" type="text/css" href="standard.css">
+
+<script type="text/javascript" src="synapp2.js"></script>
+
+<!-- //// -->
+
+<script type="text/javascript">
+
+set_appid('synapp2');
+set_pid('options');
+
+////
+
+function page_init()
+{
+    do_init();
+    do_app_nav('id_app_nav');
+    map_vkey_action('id_tbar_appid_db', VKEY_ENTER, on_change_appid, true);
+    set_input_text_value('id_tbar_appid_db', get_mark_appid_db());
+    set_focus('id_tbar_appid_db');
+    show_content();
+}
+
+function on_change_appid()
+{
+    set_mark_appid_db(get_input_text_value('id_tbar_appid_db'));
+    set_focus('id_tbar_appid_db');
+    show_content();
+}
+
+function on_change_tab_name(active_tab_name)
+{
+    show_content(active_tab_name);
+}
+
+function show_content(active_tab_name)
+{
+    set_extra_arg(get_pid(), ALT_APPID, get_mark_appid_db());
+
+    if (typeof active_tab_name != 'string')
+    {
+        active_tab_name = get_cookie('active_tab_name');
+    }
+    else
+    {
+        set_session_cookie('active_tab_name', active_tab_name);
+    }
+
+    do_sub_nav('id_tbar_select_qid', active_tab_name, 'on_change_tab_name');
+
+    on_change_mode();
+}
+
+function on_change_mode(active_mode)
+{
+    var tab_display_names = 'Display, Macro, List Macro, List Macro Order, Extra, Order, Col Order, Detail Summary Cols, Reporting, Config, Users, Roles, Permissions';
+
+    if (typeof active_mode != 'string')
+    {
+        active_mode = get_cookie(get_pid() + '_active_mode');
+    }
+
+    if (!active_mode)
+    {
+        active_mode = trim(tab_display_names.match(/^[^,]*/)[0]); // default to the first one
+    }
+
+    set_session_cookie(get_pid() + '_active_mode', active_mode);
+
+    do_sub_nav('id_mode_nav', active_mode, 'on_change_mode', 'ul', tab_display_names); // IMPORTANT: handler functions based on tab_display_names
+
+    on_show();
+}
+
+function on_show()
+{
+    var active_mode = get_cookie(get_pid() + '_active_mode');
+
+    if (active_mode)
+    {
+        on_action('_options_show_' + active_mode.toLowerCase().replace(/ /g, '_') + '_');
+    }
+}
+
+function on_process()
+{
+    var active_mode = get_cookie(get_pid() + '_active_mode');
+
+    if (active_mode)
+    {
+        on_action('_options_process_' + active_mode.toLowerCase().replace(/ /g, '_') + '_');
+    }
+}
+
+function on_action(qid)
+{
+    var cxlref = new cxl();
+
+    cxlref.set_container('id_options_container');
+//    cxlref.set_show_response(true);
+    cxlref.set_request_mode_adhoc();
+    set_extra_arg(qid, 'active_tab_name', get_cookie('active_tab_name'));
+    cxlref.m_next = on_action_next;
+    cxlref.send_request(qid);
+}
+
+function on_action_next(cxlref)
+{
+    var container_id = cxlref.m_request_qid.endsWith('_reporting_') ? 'id_title_expr' : 'id_col_expr' ;
+
+    cxlref.process_payload(container_id);
+}
+
+function insert_term()
+{
+    var container_element = document.getElementById('id_insert_term');
+
+    if (container_element)
+    {
+        var select_elements = container_element.getElementsByTagName('select')
+
+        if (select_elements && select_elements.length)
+        {
+            var select_element = select_elements[0];
+
+            if (select_element.selectedIndex >= 0)
+            {
+                var select_value = select_element.options[select_element.selectedIndex].value;
+
+                if ((container_element = document.getElementById('id_col_expr')))
+                {
+                    var input_elements = container_element.getElementsByTagName('input');
+
+                    if (input_elements && input_elements.length)
+                    {
+                        var input_element = input_elements[0];
+
+                        if (select_value == '-- default --' || input_element.value == '-- default --')
+                        {
+                            input_element.value = ''; // replace the entire expression
+                        }
+
+                        input_element.value += select_value;
+                    }
+                }
+            }
+        }
+    }
+}
+</script>
+
+<!-- //// -->
+
+<style type="text/css">
+
+#id_body
+{
+    background:url(../_shared_/img/bg_graph_paper.gif);
+}
+
+#id_sub_nav_action
+{
+    margin:0em;
+    border:0em;
+    padding:0em;
+    background:transparent;
+    vertical-align:middle;
+}
+
+#id_sub_nav_action:hover
+{
+    cursor:pointer;
+}
+
+.class_table_std td
+{
+    padding:.5em;
+    vertical-align:top;
+    cursor:default;
+}
+
+.class_table_std th
+{
+    cursor:default;
+}
+
+.class_form_std label
+{
+    width:5em;
+}
+
+</style>
+
+<!-- //// -->
+
+</head>
+<body style="background: transparent url(&quot;../_shared_/img/bg_graph_paper.gif&quot;) repeat scroll 0% 0%; cursor: default;" id="id_body" onload="page_init();">
+
+<h3>SynApp2</h3>
+
+<div style="display: block;" id="id_app_nav" class="class_app_nav">
+<ul id="nav">
+<li id="id__nav__keymap"><a href="keymap.htm" class="class_nav_inactive">KeyMap</a></li>
+<li id="id__nav__options"><a href="options.htm" class="class_nav_active">Options</a></li>
+<li id="id__nav__pagegen"><a href="pagegen.htm" class="class_nav_inactive">PageGen</a></li>
+<li id="id__nav__tools"><a href="tools.htm" class="class_nav_inactive">Tools</a></li>
+<!--li id="id__nav__engines"><a href="engines.htm" class="class_nav_inactive">Engines</a></li-->
+<!--li id="id__nav__reports"><a href="reports.htm?appid=synapp2" class="class_nav_inactive">Reports</a></li-->
+<li id="id__nav__logout"><a href="welcome.htm" class="class_nav_inactive">Logout</a></li>
+</ul>
+</div>
+
+<p id="id_tbar">
+<label>AppID (or database):</label><input value="msds" id="id_tbar_appid_db" name="_request_appid_" type="text">
+<button id="id_sub_nav_action" onclick="on_change_appid();" title="Apply (AppID)"><img src="img/action_nav_select.gif" alt="Apply (AppID)"></button>
+<label>QueryID (or table):</label><span style="display: inline;" id="id_tbar_select_qid">
+<select name="options_sub_nav_options" onchange="on_change_tab_name(this.value);">
+<option value="location">location
+</option><option value="product_locations">product_locations
+</option><option value="product_type">product_type
+</option><option value="msds" selected="selected">msds
+</option><option value="supplier">supplier
+</option><option value="product">product
+</option><option value="date">date
+</option><option value="msds_(by_product)">msds_(by_product) (msds)
+</option><option value="products_(by_location)">products_(by_location) (product_locations)
+</option></select>
+</span>
+</p>
+
+<div id="id_page_content" class="class_page_content">
+
+<div id="id_page_container">
+<div style="display: block;" id="id_mode_nav" class="class_app_nav">
+<ul id="rpt">
+<li><a href="#" onclick="on_change_mode('Display');" class="class_rpt_active">Display</a></li>
+<li><a href="#" onclick="on_change_mode('Macro');" class="class_rpt_inactive">Macro</a></li>
+<li><a href="#" onclick="on_change_mode('List Macro');" class="class_rpt_inactive">List Macro</a></li>
+<li><a href="#" onclick="on_change_mode('List Macro Order');" class="class_rpt_inactive">List Macro Order</a></li>
+<li><a href="#" onclick="on_change_mode('Extra');" class="class_rpt_inactive">Extra</a></li>
+<li><a href="#" onclick="on_change_mode('Order');" class="class_rpt_inactive">Order</a></li>
+<li><a href="#" onclick="on_change_mode('Col Order');" class="class_rpt_inactive">Col Order</a></li>
+<li><a href="#" onclick="on_change_mode('Detail Summary Cols');" class="class_rpt_inactive">Detail Summary Cols</a></li>
+<li><a href="#" onclick="on_change_mode('Reporting');" class="class_rpt_inactive">Reporting</a></li>
+<li><a href="#" onclick="on_change_mode('Config');" class="class_rpt_inactive">Config</a></li>
+<li><a href="#" onclick="on_change_mode('Users');" class="class_rpt_inactive">Users</a></li>
+<li><a href="#" onclick="on_change_mode('Roles');" class="class_rpt_inactive">Roles</a></li>
+<li><a href="#" onclick="on_change_mode('Permissions');" class="class_rpt_inactive">Permissions</a></li>
+</ul>
+</div>
+<div id="id_options_container">
+<div class="class_nav_col">
+<div class="class_layout_group_std">
+<div class="class_layout_group_caption_std">Options Form - Column Display Attributes</div>
+<table id="id_options_table" class="class_table_std" cellspacing="0">
+<tbody>
+<tr><th></th><th>Search Form</th><th>Display Form</th><th>Select Form</th><th>Input Form</th><th>Report Form</th><th>Report Column</th></tr>
+<tr>
+<th><big>EFFECTIVE_DATE</big><small><br><br>effective_date<br><br>VARCHAR 511</small></th>
+<td><div id="msds__SFORM__effective_date" class="class_form_std"><label>Omit:</label><select name="msds__SFORM__effective_date__COL_OMIT"><option value="0" selected="selected">No</option><option value="1">Yes</option></select><br><label>Size:</label><input name="msds__SFORM__effective_date__COL_SIZE" size="5" type="text"><br></div></td>
+<td><div id="msds__DFORM__effective_date" class="class_form_std"><label>Omit:</label><select name="msds__DFORM__effective_date__COL_OMIT"><option value="0" selected="selected">No</option><option value="1">Yes</option></select><br><label>Size:</label><input name="msds__DFORM__effective_date__COL_SIZE" size="5" type="text"><br></div></td>
+<td><div id="msds__TFORM__effective_date" class="class_form_std"><label>Omit:</label><select name="msds__TFORM__effective_date__COL_OMIT"><option value="0" selected="selected">No</option><option value="1">Yes</option></select><br><label>Size:</label><input name="msds__TFORM__effective_date__COL_SIZE" size="5" type="text"><br><label>Align:</label><select name="msds__TFORM__effective_date__COL_ALIGN"><option value="-- default --" selected="selected">-- default --</option><option value="L">Left</option><option value="C">Center</option><option value="R">Right</option></select><br></div></td>
+<td><div id="msds__IFORM__effective_date" class="class_form_std"><label>Omit:</label><select name="msds__IFORM__effective_date__COL_OMIT"><option value="0" selected="selected">No</option><option value="1">Yes</option></select><br><label>Editor:</label><select name="msds__IFORM__effective_date__COL_EDITOR"><option value="-- default --" selected="selected">-- default --</option><option value="input">&lt;input&gt;</option><option value="textarea">&lt;textarea&gt;</option></select><br><label>Size:</label><input name="msds__IFORM__effective_date__COL_SIZE" size="5" type="text"><br><label>Rows:</label><input name="msds__IFORM__effective_date__COL_EDITOR_ROWS" size="5" type="text"><br></div></td>
+<td><div id="msds__FFORM__effective_date" class="class_form_std"><label>Omit:</label><select name="msds__FFORM__effective_date__COL_OMIT"><option value="0" selected="selected">No</option><option value="1">Yes</option></select><br><label>Size:</label><input name="msds__FFORM__effective_date__COL_SIZE" size="5" type="text"><br></div></td>
+<td><div id="msds__RFORM__effective_date" class="class_form_std"><label>Omit:</label><select name="msds__RFORM__effective_date__COL_OMIT"><option value="0" selected="selected">No</option><option value="1">Yes</option></select><br><label>Size:</label><input name="msds__RFORM__effective_date__COL_SIZE" size="5" type="text"><br><label>Align:</label><select name="msds__RFORM__effective_date__COL_ALIGN"><option value="-- default --" selected="selected">-- default --</option><option value="L">Left</option><option value="C">Center</option><option value="R">Right</option></select><br><label>Format:</label><input name="msds__RFORM__effective_date__COL_FORMAT" size="24" type="text"><br></div></td>
+</tr>
+<tr><th></th><th>Search Form</th><th>Display Form</th><th>Select Form</th><th>Input Form</th><th>Report Form</th><th>Report Column</th></tr>
+<tr>
+<th><big>Expiry Date</big><small><br><br>expiry_date<br><br>VARCHAR 511</small></th>
+<td><div id="msds__SFORM__expiry_date" class="class_form_std"><label>Omit:</label><select name="msds__SFORM__expiry_date__COL_OMIT"><option value="0" selected="selected">No</option><option value="1">Yes</option></select><br><label>Size:</label><input name="msds__SFORM__expiry_date__COL_SIZE" size="5" type="text"><br></div></td>
+<td><div id="msds__DFORM__expiry_date" class="class_form_std"><label>Omit:</label><select name="msds__DFORM__expiry_date__COL_OMIT"><option value="0" selected="selected">No</option><option value="1">Yes</option></select><br><label>Size:</label><input name="msds__DFORM__expiry_date__COL_SIZE" size="5" type="text"><br></div></td>
+<td><div id="msds__TFORM__expiry_date" class="class_form_std"><label>Omit:</label><select name="msds__TFORM__expiry_date__COL_OMIT"><option value="0" selected="selected">No</option><option value="1">Yes</option></select><br><label>Size:</label><input name="msds__TFORM__expiry_date__COL_SIZE" size="5" type="text"><br><label>Align:</label><select name="msds__TFORM__expiry_date__COL_ALIGN"><option value="-- default --" selected="selected">-- default --</option><option value="L">Left</option><option value="C">Center</option><option value="R">Right</option></select><br></div></td>
+<td><div id="msds__IFORM__expiry_date" class="class_form_std"><label>Omit:</label><select name="msds__IFORM__expiry_date__COL_OMIT"><option value="0" selected="selected">No</option><option value="1">Yes</option></select><br><label>Editor:</label><select name="msds__IFORM__expiry_date__COL_EDITOR"><option value="-- default --" selected="selected">-- default --</option><option value="input">&lt;input&gt;</option><option value="textarea">&lt;textarea&gt;</option></select><br><label>Size:</label><input name="msds__IFORM__expiry_date__COL_SIZE" size="5" type="text"><br><label>Rows:</label><input name="msds__IFORM__expiry_date__COL_EDITOR_ROWS" size="5" type="text"><br></div></td>
+<td><div id="msds__FFORM__expiry_date" class="class_form_std"><label>Omit:</label><select name="msds__FFORM__expiry_date__COL_OMIT"><option value="0" selected="selected">No</option><option value="1">Yes</option></select><br><label>Size:</label><input name="msds__FFORM__expiry_date__COL_SIZE" size="5" type="text"><br></div></td>
+<td><div id="msds__RFORM__expiry_date" class="class_form_std"><label>Omit:</label><select name="msds__RFORM__expiry_date__COL_OMIT"><option value="0" selected="selected">No</option><option value="1">Yes</option></select><br><label>Size:</label><input name="msds__RFORM__expiry_date__COL_SIZE" size="5" type="text"><br><label>Align:</label><select name="msds__RFORM__expiry_date__COL_ALIGN"><option value="-- default --" selected="selected">-- default --</option><option value="L">Left</option><option value="C">Center</option><option value="R">Right</option></select><br><label>Format:</label><input name="msds__RFORM__expiry_date__COL_FORMAT" size="24" type="text"><br></div></td>
+</tr>
+<tr><th></th><th>Search Form</th><th>Display Form</th><th>Select Form</th><th>Input Form</th><th>Report Form</th><th>Report Column</th></tr>
+<tr>
+<th><big>ADDINGCOMMENT</big><small><br><br>document_link<br><br>VARCHAR 511</small></th>
+<td><div id="msds__SFORM__document_link" class="class_form_std"><label>Omit:</label><select name="msds__SFORM__document_link__COL_OMIT"><option value="0" selected="selected">No</option><option value="1">Yes</option></select><br><label>Size:</label><input name="msds__SFORM__document_link__COL_SIZE" size="5" type="text"><br></div></td>
+<td><div id="msds__DFORM__document_link" class="class_form_std"><label>Omit:</label><select name="msds__DFORM__document_link__COL_OMIT"><option value="0" selected="selected">No</option><option value="1">Yes</option></select><br><label>Size:</label><input name="msds__DFORM__document_link__COL_SIZE" size="5" type="text"><br></div></td>
+<td><div id="msds__TFORM__document_link" class="class_form_std"><label>Omit:</label><select name="msds__TFORM__document_link__COL_OMIT"><option value="0" selected="selected">No</option><option value="1">Yes</option></select><br><label>Size:</label><input name="msds__TFORM__document_link__COL_SIZE" size="5" type="text"><br><label>Align:</label><select name="msds__TFORM__document_link__COL_ALIGN"><option value="-- default --" selected="selected">-- default --</option><option value="L">Left</option><option value="C">Center</option><option value="R">Right</option></select><br></div></td>
+<td><div id="msds__IFORM__document_link" class="class_form_std"><label>Omit:</label><select name="msds__IFORM__document_link__COL_OMIT"><option value="0" selected="selected">No</option><option value="1">Yes</option></select><br><label>Editor:</label><select name="msds__IFORM__document_link__COL_EDITOR"><option value="-- default --" selected="selected">-- default --</option><option value="input">&lt;input&gt;</option><option value="textarea">&lt;textarea&gt;</option></select><br><label>Size:</label><input name="msds__IFORM__document_link__COL_SIZE" size="5" type="text"><br><label>Rows:</label><input name="msds__IFORM__document_link__COL_EDITOR_ROWS" size="5" type="text"><br></div></td>
+<td><div id="msds__FFORM__document_link" class="class_form_std"><label>Omit:</label><select name="msds__FFORM__document_link__COL_OMIT"><option value="0" selected="selected">No</option><option value="1">Yes</option></select><br><label>Size:</label><input name="msds__FFORM__document_link__COL_SIZE" size="5" type="text"><br></div></td>
+<td><div id="msds__RFORM__document_link" class="class_form_std"><label>Omit:</label><select name="msds__RFORM__document_link__COL_OMIT"><option value="0" selected="selected">No</option><option value="1">Yes</option></select><br><label>Size:</label><input name="msds__RFORM__document_link__COL_SIZE" size="5" type="text"><br><label>Align:</label><select name="msds__RFORM__document_link__COL_ALIGN"><option value="-- default --" selected="selected">-- default --</option><option value="L">Left</option><option value="C">Center</option><option value="R">Right</option></select><br><label>Format:</label><input name="msds__RFORM__document_link__COL_FORMAT" size="24" type="text"><br></div></td>
+</tr>
+<tr><th></th><th>Search Form</th><th>Display Form</th><th>Select Form</th><th>Input Form</th><th>Report Form</th><th>Report Column</th></tr>
+<tr>
+<th><big>Msds Status</big><small><br><br>msds_status<br><br>VARCHAR 511</small></th>
+<td><div id="msds__SFORM__msds_status" class="class_form_std"><label>Omit:</label><select name="msds__SFORM__msds_status__COL_OMIT"><option value="0" selected="selected">No</option><option value="1">Yes</option></select><br><label>Size:</label><input name="msds__SFORM__msds_status__COL_SIZE" size="5" type="text"><br></div></td>
+<td><div id="msds__DFORM__msds_status" class="class_form_std"><label>Omit:</label><select name="msds__DFORM__msds_status__COL_OMIT"><option value="0" selected="selected">No</option><option value="1">Yes</option></select><br><label>Size:</label><input name="msds__DFORM__msds_status__COL_SIZE" size="5" type="text"><br></div></td>
+<td><div id="msds__TFORM__msds_status" class="class_form_std"><label>Omit:</label><select name="msds__TFORM__msds_status__COL_OMIT"><option value="0" selected="selected">No</option><option value="1">Yes</option></select><br><label>Size:</label><input name="msds__TFORM__msds_status__COL_SIZE" size="5" type="text"><br><label>Align:</label><select name="msds__TFORM__msds_status__COL_ALIGN"><option value="-- default --" selected="selected">-- default --</option><option value="L">Left</option><option value="C">Center</option><option value="R">Right</option></select><br></div></td>
+<td><div id="msds__IFORM__msds_status" class="class_form_std"><label>Omit:</label><select name="msds__IFORM__msds_status__COL_OMIT"><option value="0" selected="selected">No</option><option value="1">Yes</option></select><br><label>Editor:</label><select name="msds__IFORM__msds_status__COL_EDITOR"><option value="-- default --" selected="selected">-- default --</option><option value="input">&lt;input&gt;</option><option value="textarea">&lt;textarea&gt;</option></select><br><label>Size:</label><input name="msds__IFORM__msds_status__COL_SIZE" size="5" type="text"><br><label>Rows:</label><input name="msds__IFORM__msds_status__COL_EDITOR_ROWS" size="5" type="text"><br></div></td>
+<td><div id="msds__FFORM__msds_status" class="class_form_std"><label>Omit:</label><select name="msds__FFORM__msds_status__COL_OMIT"><option value="0" selected="selected">No</option><option value="1">Yes</option></select><br><label>Size:</label><input name="msds__FFORM__msds_status__COL_SIZE" size="5" type="text"><br></div></td>
+<td><div id="msds__RFORM__msds_status" class="class_form_std"><label>Omit:</label><select name="msds__RFORM__msds_status__COL_OMIT"><option value="0" selected="selected">No</option><option value="1">Yes</option></select><br><label>Size:</label><input name="msds__RFORM__msds_status__COL_SIZE" size="5" type="text"><br><label>Align:</label><select name="msds__RFORM__msds_status__COL_ALIGN"><option value="-- default --" selected="selected">-- default --</option><option value="L">Left</option><option value="C">Center</option><option value="R">Right</option></select><br><label>Format:</label><input name="msds__RFORM__msds_status__COL_FORMAT" size="24" type="text"><br></div></td>
+</tr>
+<tr><th></th><th>Search Form</th><th>Display Form</th><th>Select Form</th><th>Input Form</th><th>Report Form</th><th>Report Column</th></tr>
+<tr>
+<th><big>Product</big><small><br><br>id_product, msds_id_product<br><br>CHAR 8 (FK1)</small></th>
+<td><div id="msds__SFORM__id_product" class="class_form_std"><label>Omit:</label><select name="msds__SFORM__id_product__COL_OMIT"><option value="0" selected="selected">No</option><option value="1">Yes</option></select><br><label>Size:</label><input name="msds__SFORM__id_product__COL_SIZE" size="5" type="text"><br></div></td>
+<td><div id="msds__DFORM__id_product" class="class_form_std"><label>Omit:</label><select name="msds__DFORM__id_product__COL_OMIT"><option value="0" selected="selected">No</option><option value="1">Yes</option></select><br><label>Size:</label><input name="msds__DFORM__id_product__COL_SIZE" size="5" type="text"><br></div></td>
+<td><div id="msds__TFORM__id_product" class="class_form_std"><label>Omit:</label><select name="msds__TFORM__id_product__COL_OMIT"><option value="0" selected="selected">No</option><option value="1">Yes</option></select><br><label>Size:</label><input name="msds__TFORM__id_product__COL_SIZE" size="5" type="text"><br><label>Align:</label><select name="msds__TFORM__id_product__COL_ALIGN"><option value="-- default --" selected="selected">-- default --</option><option value="L">Left</option><option value="C">Center</option><option value="R">Right</option></select><br></div></td>
+<td><div id="msds__IFORM__id_product" class="class_form_std"><label>Omit:</label><select name="msds__IFORM__id_product__COL_OMIT"><option value="0" selected="selected">No</option><option value="1">Yes</option></select><br><label>Editor:</label><select name="msds__IFORM__id_product__COL_EDITOR"><option value="-- default --" selected="selected">-- default --</option><option value="input">&lt;input&gt;</option><option value="textarea">&lt;textarea&gt;</option></select><br><label>Size:</label><input name="msds__IFORM__id_product__COL_SIZE" size="5" type="text"><br><label>Rows:</label><input name="msds__IFORM__id_product__COL_EDITOR_ROWS" size="5" type="text"><br></div></td>
+<td><div id="msds__FFORM__id_product" class="class_form_std"><label>Omit:</label><select name="msds__FFORM__id_product__COL_OMIT"><option value="0" selected="selected">No</option><option value="1">Yes</option></select><br><label>Size:</label><input name="msds__FFORM__id_product__COL_SIZE" size="5" type="text"><br></div></td>
+<td><div id="msds__RFORM__id_product" class="class_form_std"><label>Omit:</label><select name="msds__RFORM__id_product__COL_OMIT"><option value="0" selected="selected">No</option><option value="1">Yes</option></select><br><label>Size:</label><input name="msds__RFORM__id_product__COL_SIZE" size="5" type="text"><br><label>Align:</label><select name="msds__RFORM__id_product__COL_ALIGN"><option value="-- default --" selected="selected">-- default --</option><option value="L">Left</option><option value="C">Center</option><option value="R">Right</option></select><br><label>Format:</label><input name="msds__RFORM__id_product__COL_FORMAT" size="24" type="text"><br></div></td>
+</tr>
+<tr><th></th><th>Search Form</th><th>Display Form</th><th>Select Form</th><th>Input Form</th><th>Report Form</th><th>Report Column</th></tr>
+<tr>
+<th><big>Disposition</big><small><br><br>disposition<br><br><em>EXTRA</em></small></th>
+<td><div id="msds__SFORM__disposition" class="class_form_std"><label>Omit:</label><select name="msds__SFORM__disposition__COL_OMIT"><option value="0" selected="selected">No</option><option value="1">Yes</option></select><br><label>Size:</label><input name="msds__SFORM__disposition__COL_SIZE" size="5" type="text"><br></div></td>
+<td><div id="msds__DFORM__disposition" class="class_form_std"><label>Omit:</label><select name="msds__DFORM__disposition__COL_OMIT"><option value="0" selected="selected">No</option><option value="1">Yes</option></select><br><label>Size:</label><input name="msds__DFORM__disposition__COL_SIZE" size="5" type="text"><br></div></td>
+<td><div id="msds__TFORM__disposition" class="class_form_std"><label>Omit:</label><select name="msds__TFORM__disposition__COL_OMIT"><option value="0" selected="selected">No</option><option value="1">Yes</option></select><br><label>Size:</label><input name="msds__TFORM__disposition__COL_SIZE" size="5" type="text"><br><label>Align:</label><select name="msds__TFORM__disposition__COL_ALIGN"><option value="-- default --" selected="selected">-- default --</option><option value="L">Left</option><option value="C">Center</option><option value="R">Right</option></select><br></div></td>
+<td> </td>
+<td><div id="msds__FFORM__disposition" class="class_form_std"><label>Omit:</label><select name="msds__FFORM__disposition__COL_OMIT"><option value="0" selected="selected">No</option><option value="1">Yes</option></select><br><label>Size:</label><input name="msds__FFORM__disposition__COL_SIZE" size="5" type="text"><br></div></td>
+<td><div id="msds__RFORM__disposition" class="class_form_std"><label>Omit:</label><select name="msds__RFORM__disposition__COL_OMIT"><option value="0" selected="selected">No</option><option value="1">Yes</option></select><br><label>Size:</label><input name="msds__RFORM__disposition__COL_SIZE" size="5" type="text"><br><label>Align:</label><select name="msds__RFORM__disposition__COL_ALIGN"><option value="-- default --" selected="selected">-- default --</option><option value="L">Left</option><option value="C">Center</option><option value="R">Right</option></select><br><label>Format:</label><input name="msds__RFORM__disposition__COL_FORMAT" size="24" type="text"><br></div></td>
+</tr>
+<tr><th></th><th>Search Form</th><th>Display Form</th><th>Select Form</th><th>Input Form</th><th>Report Form</th><th>Report Column</th></tr>
+<tr>
+<th>All Columns</th>
+<td></td>
+<td></td>
+<td><div id="msds__TFORM" class="class_form_std"><label>Rows:</label><input name="msds__TFORM__LIMIT_ROWS" value="20" size="5" type="text"><br></div></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="class_vsep_std"></div>
+<input value="Process Column Display Attributes" title="Process Column Display Attributes" onclick="on_process();" type="button">
+</div><!-- class_layout_group_std -->
+<div class="class_layout_vsep_std"></div>
+<div class="class_layout_hsep_std"></div>
+</div><!-- nav_col -->
+</div>
+</div>
+
+<div id="id_page_msg" class="class_msg_std"><a id="id_crumb_" href="msds.htm">Jump to: msds, page  Msds</a></div>
+
+</div><!-- id_page_content -->
+
+
+
+</body></html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!--
+/* login.htm - SynApp2 login page
+**
+   +======================================================================+
+   | SynApp2 Version 1                                                    |
+   +======================================================================+
+   | Copyright (c) 2007 - 2010 Richard Howell. All rights reserved.       |
+   +======================================================================+
+   | This source file is subject to version 1.01 of the SynApp2 license,  |
+   | that is bundled with this package in the file LICENSE, and is        |
+   | available through the world-wide-web at the following url:           |
+   | http://www.synapp2.org/license/1_01.txt                              |
+   | If you did not receive a copy of the SynApp2 license and are unable  |
+   | to obtain it through the world-wide-web, please send a note to       |
+   | license@synapp2.org so we can mail you a copy immediately.           |
+   +======================================================================+
+   | Authors: Richard Howell                                              |
+   |                                                                      |
+   +======================================================================+
+**
+** http://www.synapp2.org
+**
+** $Id: login.htm,v 1.5 2010/03/04 17:31:51 richard Exp $
+*/
+-->
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>
+SynApp2 Login
+</title>
+
+<link rel="stylesheet" type="text/css" href="standard.css">
+
+<script type="text/javascript" src="synapp2.js"></script>
+
+<!-- //// -->
+
+<script type="text/javascript">
+
+set_appid('synapp2');
+set_pid('login');
+
+function page_init()
+{
+    if (typeof g_search_appid != 'string' || !g_search_appid)
+    {
+        set_container_msg_markup('Login: appid not specified in search string');
+    }
+    else
+    {
+        g_appid = g_search_appid;
+    }
+
+    do_init();
+    map_vkey_action('id__iform__login__form', VKEY_ENTER, do_login, true);
+}
+
+function do_login()
+{
+    var xch = new cxl();
+
+    xch.set_container('id__iform__login');
+    xch.send_request();
+}
+
+</script>
+
+<!-- //// -->
+
+<style type="text/css">
+#id_page_msg
+{
+    font-size:small;
+    font-family:sans-serif;
+    font-style:italic;
+    margin:0;
+    padding:1em;
+}
+</style>
+
+<!-- //// -->
+
+</head>
+<body style="background: transparent url(&quot;../_shared_/img/bg_graph_paper.gif&quot;) repeat scroll 0% 0%;" id="id_body" onload="page_init();">
+
+<h3>SynApp2 Login</h3>
+
+<div id="id_page_content" class="class_page_content">
+
+<div id="id__iform__login" class="class_layout_group_std">
+    <div class="class_form_std">
+        <label>username:</label><input id="id__iform__login__username" name="_login_username_" type="text" value="admin"><br>
+        <label>password:</label><input id="id__iform__login__password" name="_login_password_" type="password" value="admin"><br>
+    </div><!-- class_form_std -->
+    <div class="class_vsep_std"></div>
+    <button type="button" name="do_login" title="Login" onclick="location.href='synapp2.htm'">Ok</button>
+</div><!-- id__iform__login -->
+
+<div id="id_page_msg" class="class_msg_std"></div>
+
+</div><!-- id_page_content -->
+
+
+
+</body></html>

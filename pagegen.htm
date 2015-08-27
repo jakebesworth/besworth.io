@@ -1,0 +1,278 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+/* pagegen.htm - SynApp2 driver page
+**
+   +======================================================================+
+   | SynApp2 Version 1                                                    |
+   +======================================================================+
+   | Copyright (c) 2007 - 2010 Richard Howell. All rights reserved.       |
+   +======================================================================+
+   | This source file is subject to version 1.01 of the SynApp2 license,  |
+   | that is bundled with this package in the file LICENSE, and is        |
+   | available through the world-wide-web at the following url:           |
+   | http://www.synapp2.org/license/1_01.txt                              |
+   | If you did not receive a copy of the SynApp2 license and are unable  |
+   | to obtain it through the world-wide-web, please send a note to       |
+   | license@synapp2.org so we can mail you a copy immediately.           |
+   +======================================================================+
+   | Authors: Richard Howell                                              |
+   |                                                                      |
+   +======================================================================+
+**
+** http://www.synapp2.org
+**
+** $Id: pagegen.htm,v 1.12 2010/07/13 20:58:15 richard Exp $
+*/
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>
+SynApp2 PageGen
+</title>
+
+<link rel="stylesheet" type="text/css" href="standard.css">
+
+<script type="text/javascript" src="synapp2.js"></script>
+
+<!-- //// -->
+
+<script type="text/javascript">
+
+set_appid('synapp2');
+set_pid('pagegen');
+
+var QID_SHOW = '_pagegen_show_';
+var QID_PROCESS = '_pagegen_process_';
+
+////
+
+function page_init()
+{
+    do_init();
+    do_app_nav('id_app_nav');
+    map_vkey_action('id_tbar_appid_db', VKEY_ENTER, on_change_appid, true);
+    set_input_text_value('id_tbar_appid_db', get_mark_appid_db());
+    set_focus('id_tbar_appid_db');
+    show_content();
+}
+
+function on_change_appid()
+{
+    set_mark_appid_db(get_input_text_value('id_tbar_appid_db'));
+    set_focus('id_tbar_appid_db');
+    show_content();
+}
+
+function on_remove_appid()
+{
+    if(document.getElementById("id_tbar_appid_db"))
+    {
+        document.getElementById("id_tbar_appid_db").value = '';
+    }
+
+    on_change_appid();
+}
+
+function on_change_tab_name(active_tab_name)
+{
+    show_content(active_tab_name);
+}
+
+function show_content(active_tab_name)
+{
+    set_extra_arg(get_pid(), ALT_APPID, get_mark_appid_db());
+
+    if (typeof active_tab_name != 'string')
+    {
+        active_tab_name = get_cookie('active_tab_name');
+    }
+    else
+    {
+        set_session_cookie('active_tab_name', active_tab_name);
+    }
+
+    do_sub_nav('id_tbar_select_qid', active_tab_name, 'on_change_tab_name');
+
+    pagegen_show();
+}
+
+function pagegen_process()
+{
+    var cxlref = new cxl();
+
+    cxlref.set_container('id_page_container');
+//    cxlref.set_show_response(true);
+    cxlref.set_request_mode_adhoc();
+    set_extra_arg(QID_PROCESS, 'active_tab_name', get_cookie('active_tab_name'));
+    cxlref.send_request(QID_PROCESS);
+}
+
+function pagegen_show()
+{
+    var cxlref = new cxl();
+    cxlref.set_container('id_page_container');
+//    cxlref.set_show_response(true);
+    cxlref.set_request_mode_adhoc();
+    set_extra_arg(QID_SHOW, 'active_tab_name', get_cookie('active_tab_name'));
+    cxlref.send_request(QID_SHOW);
+}
+
+function clear_tier_table(basis_key)
+{
+    var elements = document.getElementsByName(basis_key);
+
+    if (elements && elements.length)
+    {
+        for (var i = 0; i < elements.length; i++)
+        {
+            if (elements[i].checked)
+            {
+                elements[i].checked = false;
+                break;
+            }
+        }
+    }
+}
+
+</script>
+
+<!-- //// -->
+
+<style type="text/css">
+
+#id_body
+{
+    background:url(../_shared_/img/bg_graph_paper.gif);
+}
+
+#id_sub_nav_action
+{
+    margin:0em;
+    border:0em;
+    padding:0em;
+    background:transparent;
+    vertical-align:middle;
+}
+
+#id_sub_nav_action:hover
+{
+    cursor:pointer;
+}
+
+.class_log_area
+{
+    margin:0em;
+    padding:.5em;
+    background:#CCC;
+    border:1px solid black;
+}
+
+.class_table_std td
+{
+    margin:0em;
+    padding:.5em;
+    text-align:center;
+}
+
+.class_table_std input
+{
+    margin:0em;
+    border:0em;
+    padding:0em;
+}
+
+</style>
+
+<!-- //// -->
+
+</head>
+<body style="background: transparent url(&quot;../_shared_/img/bg_graph_paper.gif&quot;) repeat scroll 0% 0%; cursor: default;" id="id_body" onload="page_init();">
+
+<h3>SynApp2</h3>
+
+<div style="display: block;" id="id_app_nav" class="class_app_nav">
+<ul id="nav">
+<li id="id__nav__keymap"><a href="keymap.htm" class="class_nav_inactive">KeyMap</a></li>
+<li id="id__nav__options"><a href="options.htm" class="class_nav_inactive">Options</a></li>
+<li id="id__nav__pagegen"><a href="pagegen.htm" class="class_nav_active">PageGen</a></li>
+<li id="id__nav__tools"><a href="tools.htm" class="class_nav_inactive">Tools</a></li>
+<!--li id="id__nav__engines"><a href="engines.htm" class="class_nav_inactive">Engines</a></li-->
+<!--li id="id__nav__reports"><a href="reports.htm?appid=synapp2" class="class_nav_inactive">Reports</a></li-->
+<li id="id__nav__logout"><a href="welcome.htm" class="class_nav_inactive">Logout</a></li>
+</ul>
+</div>
+
+<p id="id_tbar">
+<label>Database (DBMS):</label><select id="_request_app_engines_" name="_request_app_engines_" onclick="on_remove_appid();"><option selected="selected" value="default">default</option><option value="daintytest">daintytest</option><option value="daintytest2">daintytest2</option><option value="dainty_msds">dainty_msds</option><option value="dainty_training">dainty_training</option><option value="local_alpha">local_alpha</option><option value="local_informix">local_informix</option><option value="local_msds">local_msds</option><option value="local_test">local_test</option><option value="local_training2">local_training2</option></select>
+<label>AppID (or database):</label><input value="msds" id="id_tbar_appid_db" name="_request_appid_" type="text">
+<button id="id_sub_nav_action" onclick="on_change_appid();" title="Apply (AppID)"><img src="img/action_nav_select.gif" alt="Apply (AppID)"></button>
+<label>QueryID (or table):</label><span style="display: inline;" id="id_tbar_select_qid">
+<select name="pagegen_sub_nav_options" onchange="on_change_tab_name(this.value);">
+<option value="location">location
+</option><option value="product_locations">product_locations
+</option><option value="product_type">product_type
+</option><option value="msds" selected="selected">msds
+</option><option value="supplier">supplier
+</option><option value="product">product
+</option><option value="date">date
+</option><option value="msds_(by_product)">msds_(by_product) (msds)
+</option><option value="products_(by_location)">products_(by_location) (product_locations)
+</option></select>
+</span>
+</p>
+
+<div id="id_page_content" class="class_page_content">
+
+<div id="id_page_container">
+<div class="class_nav_col">
+<div class="class_layout_group_std">
+<div class="class_layout_group_caption_std">Page Settings - <strong>msds.msds</strong></div>
+<div class="class_form_std">
+<label>Basis Page:</label><input name="_basis_page_outfile_" value="msds.htm" type="text"><br>
+<label>Basis Page Template:</label><input name="_basis_page_template_" value="template.htm" type="text">
+<input name="_basis_page_enable_" title="Enable basis page markup generation" checked="checked" type="checkbox"><br>
+<label>Report Page:</label><input name="_report_page_outfile_" value="msds.report.htm" type="text"><br>
+<label>Report Page Template:</label><input name="_report_page_template_" value="template.report.htm" type="text">
+<input name="_report_page_enable_" title="Enable report page markup generation" checked="checked" type="checkbox"><br>
+</div><!-- class_form_std -->
+<div class="class_vsep_std"></div>
+<div style="margin-left:1em;height:2em;"><input value="Run PageGen" title="Run PageGen - Double click for initial application build" onclick="pagegen_process();" type="button">
+<label style="margin-left:3em;">Regenerate All:</label>
+<input style="vertical-align:middle;" name="regenerate_all" title="Regenerate All" onclick="pagegen_show();" type="checkbox"></div>
+<div class="class_vsep_std"></div>
+<div class="class_layout_group_caption_std">Page Status</div>
+<div class="class_log_area">
+Basis Page file: 
+<a href="msds.htm">msds.htm</a> (2015-08-13 09:17:45)<br>
+Report Page file: 
+msds.report.htm - missing<br>
+</div><!-- class_log_area -->
+</div><!-- class_layout_group_std -->
+
+</div><!-- class_nav_col -->
+
+<div class="class_nav_col">
+<div class="class_layout_group_std">
+<div class="class_layout_group_caption_std">Page Flow</div>
+<table class="class_table_std" cellspacing="0">
+<tbody>
+<tr><td colspan="1">product_type<br>(phone)<br><input name="_basis_key_05" value="0,product_type" type="radio"></td></tr>
+<tr><td colspan="1">supplier<br>(id_supplier)<br><input name="_basis_key_05" value="0,supplier" type="radio"></td></tr>
+<tr><td colspan="1">product<br>(id_product)<br><input name="_basis_key_05" value="0,product" type="radio"></td></tr>
+<tr><td colspan="1">(FK1)<br><button title="Clear" onclick="clear_tier_table('_basis_key_05');">Clear</button></td></tr>
+<tr><td colspan="1">msds<br>(id)</td></tr>
+</tbody>
+</table>
+</div><!-- class_layout_group_std -->
+</div><!-- class_nav_col -->
+
+</div>
+
+<div id="id_page_msg" class="class_msg_std"><a id="id_crumb_" href="msds.htm">Jump to: msds, page  Msds</a></div>
+
+</div><!-- id_page_content -->
+
+
+
+</body></html>

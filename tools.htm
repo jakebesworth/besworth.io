@@ -1,0 +1,302 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+/* tools.htm - SynApp2 driver page
+**
+   +======================================================================+
+   | SynApp2 Version 1                                                    |
+   +======================================================================+
+   | Copyright (c) 2007 - 2010 Richard Howell. All rights reserved.       |
+   +======================================================================+
+   | This source file is subject to version 1.01 of the SynApp2 license,  |
+   | that is bundled with this package in the file LICENSE, and is        |
+   | available through the world-wide-web at the following url:           |
+   | http://www.synapp2.org/license/1_01.txt                              |
+   | If you did not receive a copy of the SynApp2 license and are unable  |
+   | to obtain it through the world-wide-web, please send a note to       |
+   | license@synapp2.org so we can mail you a copy immediately.           |
+   +======================================================================+
+   | Authors: Richard Howell                                              |
+   |                                                                      |
+   +======================================================================+
+**
+** http://www.synapp2.org
+**
+** $Id: tools.htm,v 1.1 2010/09/26 19:15:08 richard Exp $
+*/
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>
+SynApp2 Tools
+</title>
+
+<link rel="stylesheet" type="text/css" href="standard.css">
+
+<script type="text/javascript" src="synapp2.js"></script>
+
+<!-- //// -->
+
+<script type="text/javascript">
+
+set_appid('synapp2');
+set_pid('tools');
+
+////
+
+function page_init()
+{
+    do_init();
+    do_app_nav('id_app_nav');
+    map_vkey_action('id_tbar_appid_db', VKEY_ENTER, on_change_appid, true);
+    set_input_text_value('id_tbar_appid_db', get_mark_appid_db());
+    set_focus('id_tbar_appid_db');
+    show_content();
+}
+
+function on_change_appid()
+{
+    set_mark_appid_db(get_input_text_value('id_tbar_appid_db'));
+    set_focus('id_tbar_appid_db');
+    show_content();
+}
+
+function on_change_tab_name(active_tab_name)
+{
+    show_content(active_tab_name);
+}
+
+function show_content(active_tab_name)
+{
+    set_extra_arg(get_pid(), ALT_APPID, get_mark_appid_db());
+
+    if (typeof active_tab_name != 'string')
+    {
+        active_tab_name = get_cookie('active_tab_name');
+    }
+    else
+    {
+        set_session_cookie('active_tab_name', active_tab_name);
+    }
+
+    do_sub_nav('id_tbar_select_qid', active_tab_name, 'on_change_tab_name');
+
+    on_change_mode();
+}
+
+function on_change_mode(active_mode)
+{
+    var tab_display_names = 'Users, QueryID, Structure';
+
+    if (typeof active_mode != 'string')
+    {
+        active_mode = get_cookie(get_pid() + '_active_mode');
+    }
+
+    if (!active_mode)
+    {
+        active_mode = trim(tab_display_names.match(/^[^,]*/)[0]); // default to the first one
+    }
+
+    set_session_cookie(get_pid() + '_active_mode', active_mode);
+
+    do_sub_nav('id_mode_nav', active_mode, 'on_change_mode', 'ul', tab_display_names); // IMPORTANT: handler functions based on tab_display_names
+
+    on_show();
+}
+
+function on_show()
+{
+    var active_mode = get_cookie(get_pid() + '_active_mode');
+
+    if (active_mode)
+    {
+        on_action('_tools_show_' + active_mode.toLowerCase().replace(/ /g, '_') + '_');
+    }
+}
+
+function on_process(is_action_delete)
+{
+    var expr = get_named_element(document.getElementsByTagName('input'), 'dependent_expr');
+
+    document.getElementById('id_process_pictures_result')
+
+    if (is_action_delete)
+    {
+        if (!confirm('Do you want to delete the selected Secondary QueryID?'))
+        {
+            return;
+        }
+
+        expr.value = '';
+    }
+    else // if (is_action_insert)
+    {
+        expr.value = trim(expr.value);
+
+        if (!expr.value)
+        {
+            return;
+        }
+    }
+
+    var active_mode = get_cookie(get_pid() + '_active_mode');
+
+    if (active_mode)
+    {
+        on_action('_tools_process_' + active_mode.toLowerCase().replace(/ /g, '_') + '_');
+    }
+}
+
+function on_action(qid)
+{
+    var cxlref = new cxl();
+
+    cxlref.set_container('id_tools_container');
+//    cxlref.set_show_response(true);
+    cxlref.set_request_mode_adhoc();
+    set_extra_arg(qid, 'active_tab_name', get_cookie('active_tab_name'));
+    cxlref.send_request(qid);
+}
+</script>
+
+<!-- //// -->
+
+<style type="text/css">
+
+#id_body
+{
+    background:url(../_shared_/img/bg_graph_paper.gif);
+}
+
+#id_sub_nav_action
+{
+    margin:0em;
+    border:0em;
+    padding:0em;
+    background:transparent;
+    vertical-align:middle;
+}
+
+#id_sub_nav_action:hover
+{
+    cursor:pointer;
+}
+
+.class_table_std td
+{
+    padding:.5em;
+    vertical-align:top;
+    cursor:default;
+}
+
+.class_table_std th
+{
+    cursor:default;
+}
+
+.class_form_std label
+{
+    width:5em;
+}
+
+</style>
+
+<!-- //// -->
+
+</head>
+<body style="background: transparent url(&quot;../_shared_/img/bg_graph_paper.gif&quot;) repeat scroll 0% 0%; cursor: default;" id="id_body" onload="page_init();">
+
+<h3>SynApp2</h3>
+
+<div style="display: block;" id="id_app_nav" class="class_app_nav">
+<ul id="nav">
+<li id="id__nav__keymap"><a href="keymap.htm" class="class_nav_inactive">KeyMap</a></li>
+<li id="id__nav__options"><a href="options.htm" class="class_nav_inactive">Options</a></li>
+<li id="id__nav__pagegen"><a href="pagegen.htm" class="class_nav_inactive">PageGen</a></li>
+<li id="id__nav__tools"><a href="tools.htm" class="class_nav_active">Tools</a></li>
+<!--li id="id__nav__engines"><a href="engines.htm" class="class_nav_inactive">Engines</a></li-->
+<!--li id="id__nav__reports"><a href="reports.htm?appid=synapp2" class="class_nav_inactive">Reports</a></li-->
+<li id="id__nav__logout"><a href="welcome.htm" class="class_nav_inactive">Logout</a></li>
+</ul>
+</div>
+
+<p id="id_tbar">
+<label>AppID (or database):</label><input value="msds" id="id_tbar_appid_db" name="_request_appid_" type="text">
+<button id="id_sub_nav_action" onclick="on_change_appid();" title="Apply (AppID)"><img src="img/action_nav_select.gif" alt="Apply (AppID)"></button>
+</p>
+
+<div id="id_page_content" class="class_page_content">
+
+<div id="id_page_container">
+<div style="display: block;" id="id_mode_nav" class="class_app_nav">
+<ul id="rpt">
+<li><a href="#" onclick="on_change_mode('Users');" class="class_rpt_inactive">Users</a></li>
+<li><a href="#" onclick="on_change_mode('QueryID');" class="class_rpt_inactive">QueryID</a></li>
+<li><a href="#" onclick="on_change_mode('Structure');" class="class_rpt_active">Structure</a></li>
+</ul>
+</div>
+<div id="id_tools_container">
+<div class="class_layout_group_std">
+<div class="class_layout_group_caption_std">Tools Form - Database Structure: <strong>msds</strong></div>
+<table class="class_table_std" cellspacing="0">
+<tbody>
+<tr><th></th><th>Display</th><th>Column</th><th>Key</th><th>Type</th><th>Null</th><th>Default</th><th>Comment</th></tr>
+<tr><th rowspan="2">location</th><td style="text-align:right;"><strong><em>--</em></strong></td><td>id</td><td></td><td>char(8)</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:right;"><strong><em>Asdsada</em></strong></td><td>location_name</td><td></td><td>varchar(296)</td><td>NOT NULL</td><td></td><td>asdsada</td></tr>
+<tr><th></th><th>Display</th><th>Column</th><th>Key</th><th>Type</th><th>Null</th><th>Default</th><th>Comment</th></tr>
+<tr><th rowspan="3">product_locations</th><td style="text-align:right;"><strong><em>--</em></strong></td><td>id</td><td></td><td>char(8)</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:right;"><strong><em>Product</em></strong></td><td>id_product</td><td>FK ( <strong>product.id</strong> )</td><td>char(8)</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:right;"><strong><em>Location</em></strong></td><td>id_location</td><td>FK ( <strong>location.id</strong> )</td><td>char(8)</td><td></td><td></td><td></td></tr>
+<tr><th></th><th>Display</th><th>Column</th><th>Key</th><th>Type</th><th>Null</th><th>Default</th><th>Comment</th></tr>
+<tr><th rowspan="2">product_type</th><td style="text-align:right;"><strong><em>--</em></strong></td><td>id</td><td></td><td>char(8)</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:right;"><strong><em>Type Name</em></strong></td><td>type_name</td><td></td><td>char(40)</td><td>NOT NULL</td><td></td><td></td></tr>
+<tr><th></th><th>Display</th><th>Column</th><th>Key</th><th>Type</th><th>Null</th><th>Default</th><th>Comment</th></tr>
+<tr><th rowspan="6">msds</th><td style="text-align:right;"><strong><em>--</em></strong></td><td>id</td><td></td><td>char(8)</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:right;"><strong><em>Effective Date</em></strong></td><td>effective_date</td><td></td><td>varchar(511)</td><td>NOT NULL</td><td></td><td>EFFECTIVE_DATE</td></tr>
+<tr><td style="text-align:right;"><strong><em>Expiry Date</em></strong></td><td>expiry_date</td><td></td><td>varchar(511)</td><td>NOT NULL</td><td></td><td></td></tr>
+<tr><td style="text-align:right;"><strong><em>Addingcomment</em></strong></td><td>document_link</td><td></td><td>varchar(511)</td><td></td><td></td><td>ADDINGCOMMENT</td></tr>
+<tr><td style="text-align:right;"><strong><em>Msds Status</em></strong></td><td>msds_status</td><td></td><td>varchar(511)</td><td>NOT NULL</td><td></td><td></td></tr>
+<tr><td style="text-align:right;"><strong><em>Product</em></strong></td><td>id_product</td><td>FK ( <strong>product.id</strong> )</td><td>char(8)</td><td></td><td></td><td></td></tr>
+<tr><th></th><th>Display</th><th>Column</th><th>Key</th><th>Type</th><th>Null</th><th>Default</th><th>Comment</th></tr>
+<tr><th rowspan="8">supplier</th><td style="text-align:right;"><strong><em>--</em></strong></td><td>id</td><td></td><td>char(8)</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:right;"><strong><em>Supplier Name</em></strong></td><td>supplier_name</td><td></td><td>char(40)</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:right;"><strong><em>Phone</em></strong></td><td>phone</td><td>FK ( <strong>product_type.id</strong> )</td><td>char(15)</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:right;"><strong><em>Fax</em></strong></td><td>fax</td><td></td><td>char(15)</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:right;"><strong><em>Email</em></strong></td><td>email</td><td></td><td>char(25)</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:right;"><strong><em>Website</em></strong></td><td>website</td><td></td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:right;"><strong><em>Address1</em></strong></td><td>address1</td><td></td><td>char(40)</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:right;"><strong><em>Address2</em></strong></td><td>address2</td><td></td><td>char(40)</td><td></td><td></td><td></td></tr>
+<tr><th></th><th>Display</th><th>Column</th><th>Key</th><th>Type</th><th>Null</th><th>Default</th><th>Comment</th></tr>
+<tr><th rowspan="15">product</th><td style="text-align:right;"><strong><em>--</em></strong></td><td>id</td><td></td><td>char(8)</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:right;"><strong><em>Product Name</em></strong></td><td>product_name</td><td></td><td>char(60)</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:right;"><strong><em>Product Type</em></strong></td><td>id_product_type</td><td>FK ( <strong>product_type.id</strong> )</td><td>char(8)</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:right;"><strong><em>Suggested Usage</em></strong></td><td>suggested_usage</td><td></td><td>varchar(511)</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:right;"><strong><em>Actual Usage</em></strong></td><td>actual_usage</td><td></td><td>varchar(511)</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:right;"><strong><em>Supplier</em></strong></td><td>id_supplier</td><td>FK ( <strong>supplier.id</strong> )</td><td>char(8)</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:right;"><strong><em>Disposition</em></strong></td><td>disposition</td><td></td><td>varchar(511)</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:right;"><strong><em>Food Grade</em></strong></td><td>food_grade</td><td></td><td>varchar(511)</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:right;"><strong><em>Controlled Substance</em></strong></td><td>controlled_substance</td><td></td><td>varchar(511)</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:right;"><strong><em>Cfia Approved</em></strong></td><td>cfia_approved</td><td></td><td>varchar(511)</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:right;"><strong><em>Cfia Approval Date</em></strong></td><td>cfia_approval_date</td><td></td><td>varchar(511)</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:right;"><strong><em>Guarenteed Letter</em></strong></td><td>guarenteed_letter</td><td></td><td>varchar(511)</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:right;"><strong><em>Guarenteed Date</em></strong></td><td>guarenteed_date</td><td></td><td>varchar(511)</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:right;"><strong><em>Flammable</em></strong></td><td>flammable</td><td></td><td>varchar(511)</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:right;"><strong><em>Comment</em></strong></td><td>comment</td><td></td><td>varchar(511)</td><td></td><td></td><td></td></tr>
+<tr><th></th><th>Display</th><th>Column</th><th>Key</th><th>Type</th><th>Null</th><th>Default</th><th>Comment</th></tr>
+<tr><th rowspan="2">date</th><td style="text-align:right;"><strong><em>--</em></strong></td><td>id</td><td></td><td>char(8)</td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:right;"><strong><em>Date</em></strong></td><td>date</td><td></td><td>date</td><td></td><td></td><td></td></tr>
+</tbody>
+</table>
+<div class="class_vsep_std"></div>
+</div><!-- class_layout_group_std -->
+</div>
+</div>
+
+<div id="id_page_msg" class="class_msg_std"><a id="id_crumb_" href="msds.htm">Jump to: msds, page  Msds</a></div>
+
+</div><!-- id_page_content -->
+
+
+
+</body></html>
