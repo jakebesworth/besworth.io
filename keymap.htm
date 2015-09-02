@@ -152,7 +152,7 @@ function submit_keymap()
     border-width:1px;
     border-color:mediumslateblue;
     background-color:white;
-    text-align:center;
+    text-align:left;
 }
 
 .class_keymap_table_name
@@ -169,7 +169,12 @@ function submit_keymap()
     margin:0em;
     padding:.5em;
 }
-
+table, td, th {
+    padding: 15px;
+}
+br {
+    line-height: 1.5;
+}
 </style>
 
 <!-- //// -->
@@ -177,7 +182,7 @@ function submit_keymap()
 </head>
 <body style="background: transparent url(&quot;../_shared_/img/bg_graph_paper.gif&quot;) repeat scroll 0% 0%; cursor: default;" id="id_body" onload="page_init();">
 
-<h3>SynApp2</h3>
+<h3>Co-op Work Term Introduction</h3>
 
 <div style="display: block;" id="id_app_nav" class="class_app_nav">
 <ul id="nav">
@@ -190,21 +195,17 @@ function submit_keymap()
 <li id="id__nav__logout"><a href="welcome.htm" class="class_nav_inactive">Logout</a></li>
 </ul>
 </div>
-
 <p id="id_tbar">
-<label>AppID (or database):</label><input value="msds" id="id_tbar_appid_db" name="_request_appid_" type="text">
-<button id="id_sub_nav_action" onclick="on_change_appid();" title="Apply (AppID)"><img src="img/action_nav_select.gif" alt="Apply (AppID)"></button>
-<label>QueryID (or table):</label><span style="display: inline;" id="id_tbar_select_qid">
+<label>AppID (or Company):</label><input value="dainty_foods" id="id_tbar_appid_bd" name="_request_appid_" type="text">
+<button id="id_sub_nav_action" title="Apply (AppID)"><img src="img/action_nav_select.gif" alt="Apply (AppID)"></button>
+<label>QueryID (or Department):</label><span style="display: inline;" id="id_tbar_select_qid">
 <select name="keymap_sub_nav_options" onchange="on_change_tab_name(this.value);">
-<option value="location">location
-</option><option value="product_locations">product_locations
-</option><option value="product_type">product_type
-</option><option value="msds" selected="selected">msds
-</option><option value="supplier">supplier
-</option><option value="product">product
-</option><option value="date">date
-</option><option value="msds_(by_product)">msds_(by_product) (msds)
-</option><option value="products_(by_location)">products_(by_location) (product_locations)
+<option disabled="disabled" value="manl">Factory
+</option><option disabled="disabled" value="hrd">Human Resources
+</option><option value="itd" selected="selected">Information Technology
+</option><option disabled="disabled" value="mng">Management
+</option><option disabled="disabled" value="quas">Quality Assurance
+</option><option disabled="disabled" value="ship">Shipping
 </option></select>
 </span>
 </p>
@@ -213,38 +214,23 @@ function submit_keymap()
 
 <div id="id_page_container">
 <div class="class_keymap">
-<table id="id_table_msds" cellspacing="0">
+<table id="id_table_keymap" cellspacing="0" align="left">
 <thead>
-<tr><th class="class_keymap_table_name" colspan="6"><strong>msds.msds</strong></th></tr>
-<tr><th>Primary   Foreign</th><th>Col Name</th><th>Join Table</th><th>Join Col</th><th>Validation</th><th>Values</th></tr>
+<tr><th class="class_keymap_table_name" colspan="6"><strong>What is Synapp2?</strong></th></tr>
+<tr><th><h3>
+<p>My co-op work term at Dainty Foods consisted of working in the IT department as a software developer under the supervision of Mr. Bob Blanchard, Director of IT. <br>
+The work I was tasked with included two projects, the first being "Integrate Synapp2 free and open-source web application generator with Alfresco Community open-source ECM, and the secondly "Allow Synapp2 compatability with Informix Dynamic Server RDBMS". <br></p>
+<p>As you may have guessed, this website is a shell of the front-end of Synapp2, with a few changes here and there. Synapp2 is a small, light weight web-application generator that is roughly 20k lines of HTML, Javascript, CSS, and PHP. <br>
+The concept behind Synapp2 is you have a database (MySQL, Oracle, Informix) and from that database you create a small web application with the click of a button, which allows users to perform CRUD operations on the database, and create business level reports on the data. <br></p>
+My time at Dainty Foods allowed me to learn more about AJAX, MVC framework, PHP, SQL (Informix, MySQL), and Security as just a few topics.
+For a brief list of the changes I made to Synapp2, you can skim the <a href="README.txt">README
+</h3></th></tr>
 </thead>
-<tbody>
-<tr><td><input name="_pkey_" value="msds.id" type="radio"><input name="_fkey_" value="msds.id" type="radio"></td><td>id (PK)</td><td>msds</td><td>id</td><td><input name="~validation~msds~id" title="Comment field" size="10" type="text"><input name="_ckey_" value="msds.id" type="radio"></td><td><input name="~value~msds~id" title="Enum values" size="10" type="text"><input name="_vkey_" value="msds.id" type="radio"></td></tr>
-<tr><td><input name="_pkey_" value="msds.effective_date" type="radio"><input name="_fkey_" value="msds.effective_date" type="radio"></td><td>effective_date</td><td></td><td></td><td><input name="~validation~msds~effective_date" title="Comment field" value="EFFECTIVE_DATE" size="10" type="text"><input name="_ckey_" value="msds.effective_date" type="radio"></td><td><input name="~value~msds~effective_date" title="Enum values" size="10" type="text"><input name="_vkey_" value="msds.effective_date" type="radio"></td></tr>
-<tr><td><input name="_pkey_" value="msds.expiry_date" type="radio"><input name="_fkey_" value="msds.expiry_date" type="radio"></td><td>expiry_date</td><td></td><td></td><td><input name="~validation~msds~expiry_date" title="Comment field" size="10" type="text"><input name="_ckey_" value="msds.expiry_date" type="radio"></td><td><input name="~value~msds~expiry_date" title="Enum values" size="10" type="text"><input name="_vkey_" value="msds.expiry_date" type="radio"></td></tr>
-<tr><td><input name="_pkey_" value="msds.document_link" type="radio"><input name="_fkey_" value="msds.document_link" type="radio"></td><td>document_link</td><td></td><td></td><td><input name="~validation~msds~document_link" title="Comment field" value="ADDINGCOMMENT" size="10" type="text"><input name="_ckey_" value="msds.document_link" type="radio"></td><td><input name="~value~msds~document_link" title="Enum values" size="10" type="text"><input name="_vkey_" value="msds.document_link" type="radio"></td></tr>
-<tr><td><input name="_pkey_" value="msds.msds_status" type="radio"><input name="_fkey_" value="msds.msds_status" type="radio"></td><td>msds_status</td><td></td><td></td><td><input name="~validation~msds~msds_status" title="Comment field" size="10" type="text"><input name="_ckey_" value="msds.msds_status" type="radio"></td><td><input name="~value~msds~msds_status" title="Enum values" size="10" type="text"><input name="_vkey_" value="msds.msds_status" type="radio"></td></tr>
-<tr><td><input name="_pkey_" value="msds.id_product" type="radio"><input name="_fkey_" value="msds.id_product" type="radio"></td><td>id_product (FK1)</td><td>product</td><td>id</td><td><input name="~validation~msds~id_product" title="Comment field" size="10" type="text"><input name="_ckey_" value="msds.id_product" type="radio"></td><td><input name="~value~msds~id_product" title="Enum values" size="10" type="text"><input name="_vkey_" value="msds.id_product" type="radio"></td></tr>
-</tbody>
-<tfoot>
-<tr><th colspan="1">Submit</th><th></th><th class="class_keymap_select" colspan="2">
-<select name="_jkey_msds" title="Select &lt;JoinTable.JoinCol&gt;" onchange="submit_keymap();">
-<option selected="selected" value="">
-</option><option value="location.id">location.id
-</option><option value="product_locations.id">product_locations.id
-</option><option value="product_type.id">product_type.id
-</option><option value="supplier.id">supplier.id
-</option><option value="product.id">product.id
-</option><option value="date.id">date.id
-</option><option value="delete"> -- delete -- 
-</option></select>
-</th></tr>
-</tfoot>
 </table>
 </div>
 </div>
 
-<div id="id_page_msg" class="class_msg_std"><a id="id_crumb_" href="msds.htm">Jump to: msds, page  Msds</a></div>
+<!--div id="id_page_msg" class="class_msg_std"><a id="id_crumb_" href="msds.htm">Jump to: msds, page  Msds</a></div-->
 
 </div><!-- id_page_content -->
 
