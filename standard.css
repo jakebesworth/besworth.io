@@ -233,7 +233,7 @@ table
     position:relative;
     float:left;
     margin:0em;
-    padding:1em;
+    padding:0.75em;
     border:1px solid #000;
     background-color:#CCCC99;  /*Light Weak Yellow*/
 
@@ -419,7 +419,7 @@ table
 .class_table_std th
 {
     text-align: center;
-    background-color:#B0B080;
+    background-color:#FFF;
 }
 
 /* nav tabs */
