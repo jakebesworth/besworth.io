@@ -229,7 +229,7 @@ function insert_term()
 </head>
 <body style="background: transparent url(&quot;../_shared_/img/bg_graph_paper.gif&quot;) repeat scroll 0% 0%; cursor: default;" id="id_body" onload="page_init();">
 
-<h3>SynApp2</h3>
+<h3>Co-op Work Term Goals</h3>
 
 <div style="display: block;" id="id_app_nav" class="class_app_nav">
 <ul id="nav">
@@ -244,19 +244,16 @@ function insert_term()
 </div>
 
 <p id="id_tbar">
-<label>AppID (or database):</label><input value="msds" id="id_tbar_appid_db" name="_request_appid_" type="text">
-<button id="id_sub_nav_action" onclick="on_change_appid();" title="Apply (AppID)"><img src="img/action_nav_select.gif" alt="Apply (AppID)"></button>
-<label>QueryID (or table):</label><span style="display: inline;" id="id_tbar_select_qid">
-<select name="options_sub_nav_options" onchange="on_change_tab_name(this.value);">
-<option value="location">location
-</option><option value="product_locations">product_locations
-</option><option value="product_type">product_type
-</option><option value="msds" selected="selected">msds
-</option><option value="supplier">supplier
-</option><option value="product">product
-</option><option value="date">date
-</option><option value="msds_(by_product)">msds_(by_product) (msds)
-</option><option value="products_(by_location)">products_(by_location) (product_locations)
+<label>AppID (or Company):</label><input value="Dainty Foods" id="id_tbar_appid_bd" name="_request_appid_" type="text">
+<button id="id_sub_nav_action" title="Apply (AppID)"><img src="img/action_nav_select.gif" alt="Apply (AppID)"></button>
+<label>QueryID (or Department):</label><span style="display: inline;" id="id_tbar_select_qid">
+<select name="keymap_sub_nav_options" onchange="on_change_tab_name(this.value);">
+<option disabled="disabled" value="manl">Factory
+</option><option disabled="disabled" value="hrd">Human Resources
+</option><option value="itd" selected="selected">Information Technology
+</option><option disabled="disabled" value="mng">Management
+</option><option disabled="disabled" value="quas">Quality Assurance
+</option><option disabled="disabled" value="ship">Shipping
 </option></select>
 </span>
 </p>
@@ -368,10 +365,6 @@ function insert_term()
 </div>
 </div>
 
-<div id="id_page_msg" class="class_msg_std"><a id="id_crumb_" href="msds.htm">Jump to: msds, page  Msds</a></div>
-
 </div><!-- id_page_content -->
-
-
 
 </body></html>
