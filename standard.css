@@ -373,7 +373,6 @@ table
     margin:.05em;
     border:0em;
     padding:.125em;
-    white-space:nowrap;
     text-decoration:underline;
     color:red;
 }
@@ -392,6 +391,7 @@ table
     border:0em;
     padding:0em;
     /*background-color:#CCCC99;*/ /*Light Weak Yellow*/
+    height:100%;
 }
 
 .class_table_std tr
@@ -412,7 +412,6 @@ table
     border:1px solid gray;
     padding:.25em .5em;
     text-align:left;
-    white-space:nowrap;
     cursor:pointer;
 }
 
