@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <!--
-/* options.htm - SynApp2 driver page
+/* tools.htm - SynApp2 driver page
 **
    +======================================================================+
    | SynApp2 Version 1                                                    |
@@ -21,14 +21,14 @@
 **
 ** http://www.synapp2.org
 **
-** $Id: options.htm,v 1.10 2010/07/17 01:55:44 richard Exp $
+** $Id: tools.htm,v 1.1 2010/09/26 19:15:08 richard Exp $
 */
 -->
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <title>
-SynApp2 Options
+SynApp2 Tools
 </title>
 
 <link rel="stylesheet" type="text/css" href="standard.css">
@@ -40,7 +40,7 @@ SynApp2 Options
 <script type="text/javascript">
 
 set_appid('synapp2');
-set_pid('options');
+set_pid('tools');
 
 ////
 
@@ -86,7 +86,7 @@ function show_content(active_tab_name)
 
 function on_change_mode(active_mode)
 {
-    var tab_display_names = 'Learning Goals';
+    var tab_display_names = 'Users, QueryID, Structure';
 
     if (typeof active_mode != 'string')
     {
@@ -111,17 +111,40 @@ function on_show()
 
     if (active_mode)
     {
-        on_action('_options_show_' + active_mode.toLowerCase().replace(/ /g, '_') + '_');
+        on_action('_tools_show_' + active_mode.toLowerCase().replace(/ /g, '_') + '_');
     }
 }
 
-function on_process()
+function on_process(is_action_delete)
 {
+    var expr = get_named_element(document.getElementsByTagName('input'), 'dependent_expr');
+
+    document.getElementById('id_process_pictures_result')
+
+    if (is_action_delete)
+    {
+        if (!confirm('Do you want to delete the selected Secondary QueryID?'))
+        {
+            return;
+        }
+
+        expr.value = '';
+    }
+    else // if (is_action_insert)
+    {
+        expr.value = trim(expr.value);
+
+        if (!expr.value)
+        {
+            return;
+        }
+    }
+
     var active_mode = get_cookie(get_pid() + '_active_mode');
 
     if (active_mode)
     {
-        on_action('_options_process_' + active_mode.toLowerCase().replace(/ /g, '_') + '_');
+        on_action('_tools_process_' + active_mode.toLowerCase().replace(/ /g, '_') + '_');
     }
 }
 
@@ -129,56 +152,11 @@ function on_action(qid)
 {
     var cxlref = new cxl();
 
-    cxlref.set_container('id_options_container');
+    cxlref.set_container('id_tools_container');
 //    cxlref.set_show_response(true);
     cxlref.set_request_mode_adhoc();
     set_extra_arg(qid, 'active_tab_name', get_cookie('active_tab_name'));
-    cxlref.m_next = on_action_next;
     cxlref.send_request(qid);
-}
-
-function on_action_next(cxlref)
-{
-    var container_id = cxlref.m_request_qid.endsWith('_reporting_') ? 'id_title_expr' : 'id_col_expr' ;
-
-    cxlref.process_payload(container_id);
-}
-
-function insert_term()
-{
-    var container_element = document.getElementById('id_insert_term');
-
-    if (container_element)
-    {
-        var select_elements = container_element.getElementsByTagName('select')
-
-        if (select_elements && select_elements.length)
-        {
-            var select_element = select_elements[0];
-
-            if (select_element.selectedIndex >= 0)
-            {
-                var select_value = select_element.options[select_element.selectedIndex].value;
-
-                if ((container_element = document.getElementById('id_col_expr')))
-                {
-                    var input_elements = container_element.getElementsByTagName('input');
-
-                    if (input_elements && input_elements.length)
-                    {
-                        var input_element = input_elements[0];
-
-                        if (select_value == '-- default --' || input_element.value == '-- default --')
-                        {
-                            input_element.value = ''; // replace the entire expression
-                        }
-
-                        input_element.value += select_value;
-                    }
-                }
-            }
-        }
-    }
 }
 </script>
 
@@ -222,15 +200,6 @@ function insert_term()
 {
     width:5em;
 }
-table, td, th {
-    padding: 15px;
-}
-table, tr {
-    text-align:left;
-}
-br {
-    line-height: 1.5;
-}
 
 </style>
 
@@ -239,14 +208,14 @@ br {
 </head>
 <body style="background: transparent url(&quot;../_shared_/img/bg_graph_paper.gif&quot;) repeat scroll 0% 0%; cursor: default;" id="id_body" onload="page_init();">
 
-<h3>Co-op Work Term Goals</h3>
+<h3>Co-op Work Term - Conclusions</h3>
 
 <div style="display: block;" id="id_app_nav" class="class_app_nav">
 <ul id="nav">
 <li id="id__nav__keymap"><a href="keymap.htm" class="class_nav_inactive">KeyMap</a></li>
-<li id="id__nav__options"><a href="options.htm" class="class_nav_active">Options</a></li>
+<li id="id__nav__options"><a href="options.htm" class="class_nav_inactive">Options</a></li>
 <li id="id__nav__pagegen"><a href="pagegen.htm" class="class_nav_inactive">PageGen</a></li>
-<li id="id__nav__tools"><a href="tools.htm" class="class_nav_inactive">Tools</a></li>
+<li id="id__nav__tools"><a href="tools.htm" class="class_nav_active">Tools</a></li>
 <!--li id="id__nav__engines"><a href="engines.htm" class="class_nav_inactive">Engines</a></li-->
 <!--li id="id__nav__reports"><a href="reports.htm?appid=synapp2" class="class_nav_inactive">Reports</a></li-->
 <li id="id__nav__logout"><a href="welcome.htm" class="class_nav_inactive">Logout</a></li>
@@ -256,15 +225,6 @@ br {
 <p id="id_tbar">
 <label>AppID (or Company):</label><input value="Dainty Foods" id="id_tbar_appid_bd" name="_request_appid_" type="text">
 <button id="id_sub_nav_action" title="Apply (AppID)"><img src="img/action_nav_select.gif" alt="Apply (AppID)"></button>
-<label>QueryID (or Department):</label><span style="display: inline;" id="id_tbar_select_qid">
-<select name="keymap_sub_nav_options" onchange="on_change_tab_name(this.value);">
-<option disabled="disabled" value="manl">Factory
-</option><option disabled="disabled" value="hrd">Human Resources
-</option><option value="itd" selected="selected">Information Technology
-</option><option disabled="disabled" value="mng">Management
-</option><option disabled="disabled" value="quas">Quality Assurance
-</option><option disabled="disabled" value="ship">Shipping
-</option></select>
 </span>
 </p>
 
@@ -273,43 +233,27 @@ br {
 <div id="id_page_container">
 <div style="display: block;" id="id_mode_nav" class="class_app_nav">
 <ul id="rpt">
-<li><a href="#" class="class_rpt_active">Learning Goals</a></li>
+<li><a href="#" class="class_rpt_active">Conclusions</a></li>
 </ul>
 </div>
-<div id="id_options_container">
-<div class="class_nav_col">
+<div id="id_tools_container">
 <div class="class_layout_group_std">
-<div class="class_layout_group_caption_std"><strong>My Work Term Goals</strong></div>
+<div class="class_layout_group_caption_std"><strong>What did I get out of my work term?</strong></div>
 <table id="id_options_table" class="class_table_std" cellspacing="0" align="left">
 <tbody>
 <tr><th bg-color="#FFFFFF"><h3>
 <p>
-One of my goals going into my first co-op work term was to expand my breadth of knowledge of concepts such as database management software (MySQL, and Informix in particular) and web development.
+reflection...
 </p>
-<p>
-A goal related to the first was simply to improve my SQL literacy in not only writing queries, but understanding relations, normalization and being able to write better, more efficient queries.
-</p>
-<p>
-The most obvious goal that I planned for myself was to improve my general problem solving skills, such as seeing what techniques my supervisor put to use. I found that problem solving projects in school, and in the workplace are entirely different. <br>
-At school you have books, the professor and the TAs as resources to solve your problem, in a very basic sense. At my work I was finding that solutions are a dime a dozen, and implementing the easiest, most efficient, and most applicable solution was much harder than simply finding any one solution. <br>
-</p>
-<p>
-I also planned a less computer-specific related goal, to impove my ability to communicate my design decisions and implementations via documentation and verbally. <br>
-In computer science related fields as I found it, you have to express information in a concise, and detailed manner. Spending a few seconds to describe the actual problem is infinitely more valuable than spending a few hours to get accross the same information but spun a different way.<br>
-</p>
-<p>
-As my final goal to attain during my work term, I wanted to be able to confidently implement my own design decisions when it came to any project I was working on. <br>
-Of course, early on, I found that Bob would tell me a general specification, and I would ask questions along my development. Near the end of the term, I was just implementing my own solutions and he would be pleased with the outcome. <br>
-</p>
-Overall, I think that my original goals were attainable, yet challenging, and I definitely improved my knowledge and abilities in all of the areas listed, and gained invaluable experience in doing so.
 </h3></th></tr>
 </tbody>
 </table>
-<div class="class_layout_vsep_std"></div>
-<div class="class_layout_hsep_std"></div>
-</div><!-- nav_col -->
+<div class="class_vsep_std"></div>
+</div><!-- class_layout_group_std -->
 </div>
 </div>
+
+<div id="id_page_msg" class="class_msg_std"><a id="id_crumb_" href="msds.htm">Jump to: msds, page  Msds</a></div>
 
 </div><!-- id_page_content -->
 

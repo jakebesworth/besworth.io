@@ -152,7 +152,7 @@ function clear_tier_table(basis_key)
     border:0em;
     padding:0em;
     background:transparent;
-    vertical-align:middle;
+    vertical-align:left;
 }
 
 #id_sub_nav_action:hover
@@ -172,7 +172,13 @@ function clear_tier_table(basis_key)
 {
     margin:0em;
     padding:.5em;
-    text-align:center;
+    vertical-align:left;
+    text-align:left;
+}
+.class_table_std th
+{
+    text-align:left;
+    cursor:default;
 }
 
 .class_table_std input
@@ -189,7 +195,7 @@ function clear_tier_table(basis_key)
 </head>
 <body style="background: transparent url(&quot;../_shared_/img/bg_graph_paper.gif&quot;) repeat scroll 0% 0%; cursor: default;" id="id_body" onload="page_init();">
 
-<h3>SynApp2</h3>
+<h3>Co-op Work Term - Company Information</h3>
 
 <div style="display: block;" id="id_app_nav" class="class_app_nav">
 <ul id="nav">
@@ -223,27 +229,19 @@ function clear_tier_table(basis_key)
 <div id="id_page_container">
 <div class="class_nav_col">
 <div class="class_layout_group_std">
-<div class="class_layout_group_caption_std">Page Settings - <strong>msds.msds</strong></div>
+<div class="class_layout_group_caption_std"><strong>What is Dainty Foods?</strong></div>
+<table id="id_options_table" class="class_table_std" cellspacing="0" align="left">
+<tbody>
+<tr><th bg-color="#FFFFFF"><h3>
+<p>
+The company
+</p>
+</h3></th></tr>
+</tbody>
+</table>
+
 <div class="class_form_std">
-<label>Basis Page:</label><input name="_basis_page_outfile_" value="msds.htm" type="text"><br>
-<label>Basis Page Template:</label><input name="_basis_page_template_" value="template.htm" type="text">
-<input name="_basis_page_enable_" title="Enable basis page markup generation" checked="checked" type="checkbox"><br>
-<label>Report Page:</label><input name="_report_page_outfile_" value="msds.report.htm" type="text"><br>
-<label>Report Page Template:</label><input name="_report_page_template_" value="template.report.htm" type="text">
-<input name="_report_page_enable_" title="Enable report page markup generation" checked="checked" type="checkbox"><br>
 </div><!-- class_form_std -->
-<div class="class_vsep_std"></div>
-<div style="margin-left:1em;height:2em;"><input value="Run PageGen" title="Run PageGen - Double click for initial application build" onclick="pagegen_process();" type="button">
-<label style="margin-left:3em;">Regenerate All:</label>
-<input style="vertical-align:middle;" name="regenerate_all" title="Regenerate All" onclick="pagegen_show();" type="checkbox"></div>
-<div class="class_vsep_std"></div>
-<div class="class_layout_group_caption_std">Page Status</div>
-<div class="class_log_area">
-Basis Page file: 
-<a href="msds.htm">msds.htm</a> (2015-08-13 09:17:45)<br>
-Report Page file: 
-msds.report.htm - missing<br>
-</div><!-- class_log_area -->
 </div><!-- class_layout_group_std -->
 
 </div><!-- class_nav_col -->
