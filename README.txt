@@ -227,8 +227,5 @@
 ------------------------------------------------------------------------------------------------------------------------------
 
 
-    Currently to choose a keymap primary key, validation, or value you need more than 1 table - allow single table databases to choose primary keys
-        - Validation and Value fields only apply to Informix databases (mimicking MySQL enum and comment)
-        
         
 ------------------------------------------------------------------------------------------------------------------------------
