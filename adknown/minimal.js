@@ -30,20 +30,23 @@ function hideshow(id, ms) {
 
 function menu(id) {
 
-    document.getElementById('main-home').style.display = 'none';
-    document.getElementById('main-adknown').style.display = 'none';
-    document.getElementById('main-jobs').style.display = 'none';
-    document.getElementById('main-goals').style.display = 'none';
-    document.getElementById('main-conclusions').style.display = 'none';
+    if(document.getElementById('main-' + id).style.display === 'none') {
 
-    document.getElementById('menu-home').className = 'menu-button';
-    document.getElementById('menu-adknown').className = 'menu-button';
-    document.getElementById('menu-jobs').className = 'menu-button';
-    document.getElementById('menu-goals').className = 'menu-button';
-    document.getElementById('menu-conclusions').className = 'menu-button';
+        document.getElementById('main-home').style.display = 'none';
+        document.getElementById('main-adknown').style.display = 'none';
+        document.getElementById('main-jobs').style.display = 'none';
+        document.getElementById('main-goals').style.display = 'none';
+        document.getElementById('main-conclusions').style.display = 'none';
 
-    fadeIn(document.getElementById('main-' + id), 200);
-    document.getElementById('menu-' + id).className = 'menu-button-selected';
+        document.getElementById('menu-home').className = 'menu-button';
+        document.getElementById('menu-adknown').className = 'menu-button';
+        document.getElementById('menu-jobs').className = 'menu-button';
+        document.getElementById('menu-goals').className = 'menu-button';
+        document.getElementById('menu-conclusions').className = 'menu-button';
+
+        fadeIn(document.getElementById('main-' + id), 300);
+        document.getElementById('menu-' + id).className = 'menu-button-selected';
+    }
 }
 
 function fadeIn(element, ms) {

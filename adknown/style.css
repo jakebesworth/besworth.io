@@ -3,8 +3,6 @@ html {
     margin: 0 auto;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 0.75em;
-    overflow-y: hidden;
-    overflow-x: hidden;
 }
 
 body {
@@ -12,7 +10,7 @@ body {
     padding-top: 50px;
     min-width: 450px;
     font-size: 14px;
-    line-height: 2;
+    line-height: 1.75;
 }
 
 #main {
@@ -31,7 +29,7 @@ body {
 
 .main-content {
     float: left;
-    max-width: 750px;
+    max-width: 550px;
     padding-top: 15px;
     padding-left: 1px;
     margin: 0 auto;
@@ -122,4 +120,7 @@ td {
 }
 a:link {
     text-decoration: none;
+}
+img {
+    margin: 75px 0px 35px 75px;
 }
