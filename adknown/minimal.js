@@ -1,3 +1,18 @@
+window.onload = function() {
+
+    var userAgent = navigator.userAgent.toLowerCase();
+    if(userAgent.indexOf('safari') > -1) {
+
+	var menu = document.getElementById('menu');
+
+	if(typeof menu !== 'undefined') {
+
+            menu.style.marginBottom = '-2px';
+            menu.style.marginLeft = '-2px';
+        }
+    }
+}
+
 function setCookie(name, value, path, expiration) {
 
     document.cookie = name + "=" + value + ';path=' + path + ';expires=' + expiration;
