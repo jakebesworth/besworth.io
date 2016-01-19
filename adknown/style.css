@@ -25,6 +25,8 @@ body {
 #menu {
     position:relative;
     padding: 2px 2px 0px 0px;
+    margin-bottom: -2px;
+    margin-left: -2px;
 }
 
 .main-content {
