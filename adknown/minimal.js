@@ -1,3 +1,4 @@
+/*
 window.onload = function() {
 
     var userAgent = navigator.userAgent.toLowerCase();
@@ -12,7 +13,7 @@ window.onload = function() {
         }
     }
 }
-
+*/
 function setCookie(name, value, path, expiration) {
 
     document.cookie = name + "=" + value + ';path=' + path + ';expires=' + expiration;
