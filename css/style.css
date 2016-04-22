@@ -1,0 +1,129 @@
+html {
+    width: 75%;
+    margin: 0 auto;
+    font-family: 'Roboto', sans-serif;
+/*    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; */
+    font-size: 0.75em;
+}
+
+body {
+    background-color: #FFFFFF;
+    padding-top: 50px;
+    min-width: 450px;
+    font-size: 14px;
+    line-height: 1.75;
+}
+
+#main {
+    color: #222222;
+    border-top: 1px solid #43b4ff;
+}
+
+#main-home {
+    position:relative;
+}
+
+#menu {
+    position:relative;
+    padding: 2px 2px 0px 0px;
+}
+
+.main-content {
+    float: left;
+    max-width: 550px;
+    padding-top: 15px;
+    padding-left: 1px;
+    margin: 0 auto;
+    background-color: #FFFFFF;
+}
+
+.menu-button {
+    border: 1px solid #43b4ff;
+    border-bottom: 0px;
+    background-color: #43b4ff;
+    color: #FFFFFF;
+    padding: 5px 10px 5px 10px;
+    margin-right: 0px;
+    text-decoration: none;
+    font-size: 1.15em;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    margin: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.menu-button-selected {
+    border: 1px solid #43b4ff;
+    border-bottom: 0px;
+    background-color: #FFFFFF;
+    margin: 0;
+    margin-right: 0px;
+    color: #43b4ff;
+    font-size: 1.15em;
+    padding: 5px 10px 5px 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.menu-button:hover{
+    border: 1px solid #43b4ff;
+    border-bottom: 0px;
+    background-color: #FFFFFF;
+    color: #43b4ff;
+    cursor: pointer;
+    cursor: hand;
+}
+
+#select-row {
+    text-align: justify;
+    width:100%;
+}
+
+#select-row > div {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 5px;
+    margin-right: 2px;
+}
+select {
+    margin-left: 10px;
+    margin-bottom: 10px;
+    background-color: #999999;
+    border: none;
+}
+
+select option {
+    background-color: #999999;
+    border: none;
+}
+
+input[type=text], input[type=submit], button {
+    background-color: #999999;
+    border: none;
+}
+
+input[type=submit], button {
+    cursor: pointer;
+    cursor: hand;
+}
+
+table {
+    width: 100%;
+    margin:0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    background-color: #333333;
+    font-size: 14px;
+}
+
+td {
+    padding: 10px;
+}
+a:link {
+    text-decoration: none;
+}
+img {
+    margin: 75px 0px 35px 75px;
+}

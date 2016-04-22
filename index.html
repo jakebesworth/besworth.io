@@ -1,16 +1,91 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>
-Besworth.me
-</title>
+<title>Jake Besworth</title>
+<meta charset="utf-8">
+<meta name="description" content="Jake Besworth's personal website">
+<meta name="keywords" content="Jake,Besworth,Software,Developer,Portfolio">
+<meta name="author" content="Jake Besworth">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/js/minimal.js"></script>
+<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
-<body onload="page_init();">
-<script type="text/javascript">
-function page_init() {
-    window.location = "adknown";
-}
-</script>
+<body>
+    <header>
+        <div id="menu">
+            <button id="menu-home" class="menu-button-selected" onclick="menu('home');">Home</button>
+            <button id="menu-adknown" class="menu-button" onclick="menu('adknown');">Adknown</button>
+            <button id="menu-jobs" class="menu-button" onclick="menu('jobs');">Job</button>
+            <button id="menu-goals" class="menu-button" onclick="menu('goals');">Goals</button>
+            <button id="menu-conclusions" class="menu-button" onclick="menu('conclusions');">Conclusions</button>
+        </div>
+    </header>
+    <div id="main">
+        <div id="main-home">
+            <div class="main-content">
+                <h1>Jake Besworth - Adknown</h1>
+                <p>
+                This webpage is a reflection on my 2015 Fall work term at <a href="http://www.adknown.com/" target="_blank">Adknown</a> as a Web Application Developer.
+                </p>
+                <p>
+                Included in my second work term report is an overview of life at Adknown, a description of my job, my goals, and what I got out of it.
+                </p>
+            </div>
+        </div>
+        <div id="main-adknown" style="display: none;">
+            <div class="main-content">
+                <h1>Adknown - Workplace</h1>
+                <p>
+                Adknown is an online publishing company in the heart of downtown Guelph. The Adknown office is located right in Old Québec Street Mall, surrounded by amazing restaurants and hip places to go. You'll see the occasional musician outside the Mall, or even partake in the Christmas festivities inside the Mall.
+                </p>
+                <p>
+                At Adknown you'll find two things are universally loved, burgers from <a href="https://www.worksburger.com/Locations/Guelph-Wyndham-Street-North.aspx" target="_blank">The Works</a> and a quick game of foosball. A motto you'll hear at Adknown is <i>Work Hard, Play Hard</i>, and for good reason. Everyone working at Adknown are all incredibly talented Developers, Campaign Managers, and the Management.
+                </p>
+                At the end of the year the management hosted a <i>Games Day</i> where we spent the day playing competitive games like foosball, Starcraft Original, Mario Kart, pool, and darts. There were even trophies given out to the winners of each event. It was an awesome way to end the 4 months. I even managed to somehow win first place in the Starcraft 1v1 tournament.
+                <p>
+            </div>
+            <img src="assets/trophy.png" title="Starcraft 1v1 Trophy" width="25%" height="25%">
+        </div>
+        <div id="main-jobs" style="display: none;">
+            <div class="main-content">
+                <h1>Job Description</h1>
+                <p>
+                I was hired for the position of <i>Web Application Developer</i> which required experience using the LAMP software bundle and various other web technologies. This included working on a number of proprietary software projects, as well as working with many of the Amazon Web Services technologies and SDKs. I learned more about PHP, Jquery, system administration through Amazon EC2 Instances, PostgreSQL-like through Amazon Redshift, Amazon S3, Amazon CodeCommit, and others.
+                </p>
+                <p>
+                I worked on many projects including but not limited to working on WordPress sites, cron job scripts, data tracking software, and advertisements. I spent a lot of time researching new technologies and testing out new methods of getting things done. It's amazing how many up and coming free and open source projects exist <a href="https://github.com/explore" target="_blank">online</a>.
+                </p>
+            </div>
+            <a href="http://aws.amazon.com/what-is-cloud-computing" title="Amazon Web Services" target="_blank"><img src="http://awsmedia.s3.amazonaws.com/AWS_Logo.png" alt="AWS Cloud Computing"></a>
+        </div>
+        <div id="main-goals" style="display: none;">
+            <div class="main-content">
+                <h1>Work Term Goals</h1>
+                <p>
+                My first work term goal was to improve my ability to communicate and relay information at a more technical and pedantic manner. This goal I figured would develop more over time with working on the various new technologies at the company.
+                </p>
+                <p>
+                My second goal, related to the first was to work on understanding the company policies and standards. This goal was an experience driven one, it was the ability to digest all of the fresh and new knowledge at my disposal.
+                </p>
+                <p>
+                Next was a lifelong goal, of trying to noticeably improve my critical thinking and problem solving abilities. Every programmer wants to get better at solving problems efficiently and meaningfully.
+                </p>
+                <p>
+                My final goal was to try and work on was making use of the resources around me (developers, my supervisor) to help me complete tasks quicker and to a higher level of quality. This goal is a job independent goal, as with any new job you'll find yourself not knowing your coworkers strengths and knowledge.
+                </p>
+            </div>
+        </div>
+        <div id="main-conclusions" style="display: none;">
+            <div class="main-content">
+                <h1>What did I get out of my work term?</h1>
+                <p>
+                I learned a lot about computing and myself for my 4 months working at Adknown. I had a lot of new experiences in Guelph, and a lot of new knowledge to take away from my work term.
+                </p>
+                <p>
+                I wanted to thank Andrew Gorrie, and Bill Stagg for hiring me and supervising me over the 4 months. I'd also like to thank the other full time employees for working with me. Finally a thank you to the other coops working there and all the fun times we had!
+                </p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
