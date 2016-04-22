@@ -41,6 +41,7 @@ body {
     padding-left: 45px;
     margin: 0 auto;
     text-align: left;
+    font-size: 16pt;
 }
 
 .menu-button {
@@ -137,6 +138,7 @@ a:link {
 }
 img {
     margin: 75px 0px 35px 75px;
+    display: block;
 }
 button::-moz-focus-inner {
     border: 0;
