@@ -1,5 +1,6 @@
 html {
-    width: 75%;
+    width: 60%;
+    height: 100%;
     margin: 0 auto;
     font-family: 'Roboto', sans-serif;
 /*    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; */
@@ -8,33 +9,38 @@ html {
 
 body {
     background-color: #FFFFFF;
-    padding-top: 50px;
-    min-width: 450px;
+    margin-top: 50px;
+    min-width: 500px;
     font-size: 14px;
     line-height: 1.75;
+    height: 90%;
 }
 
 #main {
     color: #222222;
-    border-top: 1px solid #43b4ff;
-}
-
-#main-home {
-    position:relative;
+    background-color: #eeeeee;
+    background: -webkit-linear-gradient(left, #eeeeee, #FFFFFF);
+    background: -o-linear-gradient(right, #FFFFFF, #eeeeee);
+    background: -moz-linear-gradient(right, #FFFFFF, #eeeeee);
+    background: linear-gradient(to right, #eeeeee, #FFFFFF);
+    border-left: 1px solid #43b4ff;
+    height: 100%;
 }
 
 #menu {
     position:relative;
     padding: 2px 2px 0px 0px;
+    font-size: 0;
+    border-bottom: 1px solid #43b4ff;
 }
 
 .main-content {
-    float: left;
-    max-width: 550px;
+    display: inline-block;
+    max-width: 1000px;
     padding-top: 15px;
-    padding-left: 1px;
+    padding-left: 45px;
     margin: 0 auto;
-    background-color: #FFFFFF;
+    text-align: left;
 }
 
 .menu-button {
@@ -43,33 +49,38 @@ body {
     background-color: #43b4ff;
     color: #FFFFFF;
     padding: 5px 10px 5px 10px;
-    margin-right: 0px;
-    text-decoration: none;
-    font-size: 1.15em;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
     margin: 0;
+    margin-right: 0px;
+    margin-bottom: -1px;
+    text-decoration: none;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    font-size: 24pt;
     margin-left: auto;
-    margin-right: auto;
+    margin-right: 2px;
 }
 
 .menu-button-selected {
     border: 1px solid #43b4ff;
-    border-bottom: 0px;
-    background-color: #FFFFFF;
+    border-bottom-color: #eeeeee;
+    background-color: #eeeeee;
     margin: 0;
-    margin-right: 0px;
+    margin-right: 2px;
+    margin-bottom: -1px;
     color: #43b4ff;
-    font-size: 1.15em;
     padding: 5px 10px 5px 10px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    font-size: 24pt;
 }
 
 .menu-button:hover{
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
     border: 1px solid #43b4ff;
-    border-bottom: 0px;
-    background-color: #FFFFFF;
+    border-bottom-color: #eeeeee;
+    background-color: #eeeeee;
     color: #43b4ff;
     cursor: pointer;
     cursor: hand;
@@ -126,4 +137,7 @@ a:link {
 }
 img {
     margin: 75px 0px 35px 75px;
+}
+button::-moz-focus-inner {
+    border: 0;
 }

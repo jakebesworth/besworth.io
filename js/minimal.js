@@ -1,19 +1,3 @@
-/*
-window.onload = function() {
-
-    var userAgent = navigator.userAgent.toLowerCase();
-    if(userAgent.indexOf('safari') > -1) {
-
-	var menu = document.getElementById('menu');
-
-	if(typeof menu !== 'undefined') {
-
-            menu.style.marginBottom = '-2px';
-            menu.style.marginLeft = '-2px';
-        }
-    }
-}
-*/
 function setCookie(name, value, path, expiration) {
 
     document.cookie = name + "=" + value + ';path=' + path + ';expires=' + expiration;
@@ -31,9 +15,9 @@ function refresh() {
 function hideshow(id, ms) {
     element = document.getElementById(id);
 
-    if(typeof element !== 'undefined' && typeof ms !== 'undefined') {
+    if(defined(element) && defined(ms)) {
 
-        if(element.style.display == 'none') {
+        if(element.style.display === 'none') {
 
             fadeIn(element, ms);
         }
@@ -44,30 +28,47 @@ function hideshow(id, ms) {
     }
 }
 
+function defined(element) {
+
+    return typeof element !== 'undefined' && element !== null;
+}
+
 function menu(id) {
 
-    if(document.getElementById('main-' + id).style.display === 'none') {
+    var clickedButton = document.getElementById('menu-' + id);
+    var clickedElement = document.getElementById('main-' + id);
 
-        document.getElementById('main-home').style.display = 'none';
-        document.getElementById('main-adknown').style.display = 'none';
-        document.getElementById('main-jobs').style.display = 'none';
-        document.getElementById('main-goals').style.display = 'none';
-        document.getElementById('main-conclusions').style.display = 'none';
+    if(defined(clickedButton) && defined(clickedElement) && clickedElement.style.display === 'none') {
 
-        document.getElementById('menu-home').className = 'menu-button';
-        document.getElementById('menu-adknown').className = 'menu-button';
-        document.getElementById('menu-jobs').className = 'menu-button';
-        document.getElementById('menu-goals').className = 'menu-button';
-        document.getElementById('menu-conclusions').className = 'menu-button';
+        var buttons = document.getElementsByTagName('button');
 
-        fadeIn(document.getElementById('main-' + id), 300);
-        document.getElementById('menu-' + id).className = 'menu-button-selected';
+        for(var i = 0; i < buttons.length; i++) {
+
+            var button = buttons[i];
+            var buttonElement = document.getElementById('main-' + button.id.replace('menu-', ''));
+
+            if(defined(buttonElement)) {
+
+                if(buttonElement.style.display === 'block') {
+
+                    buttonElement.style.display = 'none';
+                }
+
+                if(button.className === 'menu-button-selected') {
+
+                    button.className = 'menu-button';
+                }
+            }
+        }
+
+        fadeIn(clickedElement, 300);
+        clickedButton.className = 'menu-button-selected';
     }
 }
 
 function fadeIn(element, ms) {
 
-    if(typeof element !== 'undefined' && typeof ms !== 'undefined') {
+    if(defined(element) && defined(ms)) {
 
         element.style.opacity = 0;
         element.style.display = 'block';
@@ -92,7 +93,7 @@ function fadeIn(element, ms) {
 
 function fadeOut(element, ms) {
 
-    if(typeof element !== 'undefined' && typeof ms !== 'undefined') {
+    if(defined(element) && defined(ms)) {
    
         var opacity = 1;
         var interval = setInterval( function() {
