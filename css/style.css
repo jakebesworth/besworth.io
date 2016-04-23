@@ -165,6 +165,6 @@ button::-moz-focus-inner {
     border: 0;
 }
 
-textarea:focus, input:focus{
+button {
     outline: none;
 }
