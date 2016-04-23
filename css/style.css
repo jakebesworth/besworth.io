@@ -151,6 +151,7 @@ table {
 td {
     padding: 10px;
 }
+
 a:link {
     text-decoration: none;
 }
@@ -159,6 +160,11 @@ a:link {
     margin: 75px 0px 35px 75px;
     display: block;
 }
+
 button::-moz-focus-inner {
     border: 0;
+}
+
+textarea:focus, input:focus{
+    outline: none;
 }
