@@ -18,7 +18,7 @@
             <button id="menu-projects" class="menu-button" onclick="menu('projects');">Projects</button>
             <button id="menu-work" class="menu-button" onclick="menu('work');">Work</button>
             <button id="menu-about" class="menu-button" onclick="menu('about');">About</button>
-            <img alt="Jake Besworth Signature" src="img/sig1.png" id="signature" draggable="false">
+            <img alt="Jake Besworth Signature" src="img/sig1.png" width="500" height="79" id="signature" draggable="false">
         </div>
     </header>
     <div id="main">
@@ -26,7 +26,7 @@
             <div class="main-content">
                 <h1>Welcome!</h1>
                 <a href="https://github.com/JakeBesworth/" target="_blank">
-                    <img title="Github" alt="Github link JB Logo" id="logo" src="img/logo.png">
+                    <img title="Github" width="420" height="420" alt="Github link JB Logo" id="logo" src="img/logo.png">
                 </a>
                 <p>
                 Hey, welcome to my personal website. My name is Jake Besworth, I am a software developer / student attending the University of Guelph in beautiful Guelph Ontario, Canada. I'm planning to graduate in 2018, but in the mean time I'm working and freelancing, as well as doing a few side projects.
@@ -45,16 +45,41 @@
                 <time class="datetime" datetime="2016-04-23">2016, April 23rd</time>
                 <h1>Latest Project</h1>
                 <p>
-                You can check out my latest project SDL2-Game in <a href="#" onclick="menu('projects');">Projects</a>.
+                You can check out my latest project uMinimal in <a href="#" onclick="menu('projects');">Projects</a>.
                 </p>
             </div>
         </div>
         <div id="main-projects" style="display: none;">
             <div class="main-content">
                 <h1>Projects</h1>
-                <p>
-                Main projects on github et al
+               <p>
+                Page with a list of my latest projects, source can be found on <a href="https://github.com/jakebesworth?tab=repositories" target="_blank">Github</a>.
                 </p>
+                <time class="datetime" datetime="2016-04-23">2016, April 23rd</time>
+                <h1>uMinimal</h1>
+                <p>
+                Repository for <a href="https://github.com/jakebesworth/uMinimal" target="_blank">uMinimal</a>.
+                </p>
+                <img class="inline-img" height="811" width="1908" src="https://raw.githubusercontent.com/jakebesworth/uMinimal/master/img/example.png" alt="uMinimal Homepage">
+                <p>
+                uMinimal is a lightweight web application that displays youtube videos in a clean way without use of any APIs. The web application is written in PHP, HTML, CSS, and JavaScript and it leverages MySQL relational database management software as well as PHP-cURL, and PHP-MySQL.
+                </p>
+                <p>
+                The purpose of this project was to display my knowledge of PHP, native JavaScript, and solve my personal problems with youtube's interface. Youtube is bloated with recommended videos, a static video player and of course the front page does not function. To resolve these issues uMinimal only shows the videos you want, has a dynamic JS video player where you can drag it around, resize it, and maximize or minimize it.
+                </p>
+                <p>The way uMinimal works is that it builds a simple webpage similar to this website (single-page site) by scraping youtube channels. All options are stored via cookies not server-side such as sort order, or watched videos (such that uMinimal won't display already watched videos if you request it.) Databasing happens in the <i>dynamic/datastore.php</i>, webpage scraping happens in <i>dynamic/scraper.php</i>. Main logic for building the webpage happens in <i>body.php</i> and finally the dynamic JavaScript player and related functions are written in <i>minimal.js</i>.
+                </p>
+                <p>
+                The entire project is probably no more than 1500 lines of code, and is fairly efficient making use of cURL multi interface for a pseudo-threaded cURL request. The parsing happens entirely through regex for a couple of reasons. I tried to using all of the PHP-DOM readers, parsers, and viewers, and they all sort of fail in a number of ways such as imperfect HTML which youtube always returns. The regex I wrote is O(n) where the parsers without their flaws would be O(1) which isn't that big of a deal for the small amount of logic uMinimal does each page load. Also the regex library is platform independant and doesn't require any extra installations. For comparison, the cURL requests take about 95% of runtime, so for optimization reasons the regex is not that much of a concern.
+                </p>
+                <p>
+                The source code is not youtube dependant, you can swap out the hardcoded URLs and regex to fit any video site, youtube was just used for proof of concept. uMinimal probably breaks ToS so it should not be used commercially.
+                </p>
+                <h1>SDL2-Game</h1>
+                <p>
+                Repository for <a href="https://github.com/jakebesworth/SDL2-Game" target="_blank">SDL2-Game</a>.
+                </p>
+                <img class="inline-img" height="1080" width="1980" src="https://raw.githubusercontent.com/jakebesworth/SDL2-game/master/assets/examples/game.png" alt="SDL2-Game Example Image">
             </div>
         </div>
         <div id="main-work" style="display: none;">
@@ -63,8 +88,10 @@
                 <p>
                 Past work experience and link to work sites
                 </p>
+                <a style="display: inline-block" href="http://aws.amazon.com/what-is-cloud-computing" title="Amazon Web Services" target="_blank">
+                    <img height="60" width="160" class="inline-img" src="http://awsmedia.s3.amazonaws.com/AWS_Logo.png" alt="AWS Cloud Computing">
+                </a>
             </div>
-            <a href="http://aws.amazon.com/what-is-cloud-computing" title="Amazon Web Services" target="_blank"><img class="inline-img" src="http://awsmedia.s3.amazonaws.com/AWS_Logo.png" alt="AWS Cloud Computing"></a>
         </div>
         <div id="main-about" style="display: none;">
             <div class="main-content">
@@ -79,4 +106,5 @@
         </div>
     </div>
 </body>
+    <input type="image" style="display: none;" id="top-page" src="img/up.png" onclick="gotoTop('top-page');" title="go to top" />
 </html>

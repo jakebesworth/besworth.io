@@ -63,12 +63,14 @@ a:link {
     bottom: 0;
     right: 0;
     width: 30%;
+    height: auto;
     pointer-events: none;
 }
 
 .main-content {
     display: inline-block;
     max-width: 1000px;
+    min-width: 75%;
     padding-top: 15px;
     padding-left: 45px;
     padding-bottom: 100px;
@@ -163,15 +165,18 @@ a:link {
 }
 
 .inline-img {
-    margin: 75px 0px 35px 75px;
     display: block;
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
 }
 
 button::-moz-focus-inner {
     border: 0;
 }
 
-button {
+button, input {
     outline: none;
 }
 
@@ -180,6 +185,7 @@ button {
     border-radius: 25%;
     overflow: hidden;
     width: 20%;
+    height: auto;
     margin-left: 100px;
     margin-bottom: 100px;
 }
@@ -197,4 +203,24 @@ button {
     margin-top: 20px;
     position: relative;
     float: right;
+}
+
+#top-page {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    width: 2%;
+    min-width: 30px;
+    max-width: 60px;
+    text-decoration: none;
+    opacity: 0.75;
+}
+
+#top-page:hover {
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    opacity: 0.50;
 }

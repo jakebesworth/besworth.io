@@ -1,3 +1,13 @@
+window.onscroll = function() {
+
+    element = document.getElementById('top-page');
+
+    if(defined(element) && element.style.display === 'none') {
+
+        fadeIn(element, 300, 0.75);
+    }
+}
+
 function setCookie(name, value, path, expiration) {
 
     document.cookie = name + "=" + value + ';path=' + path + ';expires=' + expiration;
@@ -12,6 +22,13 @@ function refresh() {
     window.location = window.location.href;
 }
 
+function gotoTop(id) {
+
+    element = document.getElementById(id);
+    fadeOut(element, 300, 0.75);
+    location.href = '#';
+}
+
 function hideshow(id, ms) {
     element = document.getElementById(id);
 
@@ -19,11 +36,11 @@ function hideshow(id, ms) {
 
         if(element.style.display === 'none') {
 
-            fadeIn(element, ms);
+            fadeIn(element, ms, 1);
         }
         else {
 
-            fadeOut(element, ms);
+            fadeOut(element, ms, 1);
         }
     }
 }
@@ -61,14 +78,14 @@ function menu(id) {
             }
         }
 
-        fadeIn(clickedElement, 300);
+        fadeIn(clickedElement, 300, 1);
         clickedButton.className = 'menu-button-selected';
     }
 }
 
-function fadeIn(element, ms) {
+function fadeIn(element, ms, limit) {
 
-    if(defined(element) && defined(ms)) {
+    if(defined(element) && defined(ms) && defined(limit)) {
 
         element.style.opacity = 0;
         element.style.display = 'block';
@@ -78,10 +95,10 @@ function fadeIn(element, ms) {
         var interval = setInterval(function() {
 
             opacity += 50 / ms;
-            if(opacity >= 1) {
+            if(opacity >= limit) {
 
                 clearInterval(interval);
-                opacity = 1;
+                opacity = limit;
             }
 
             element.style.opacity = opacity;
@@ -91,11 +108,10 @@ function fadeIn(element, ms) {
 }
 
 
-function fadeOut(element, ms) {
+function fadeOut(element, ms, opacity) {
 
-    if(defined(element) && defined(ms)) {
+    if(defined(element) && defined(ms) && defined(opacity)) {
    
-        var opacity = 1;
         var interval = setInterval( function() {
 
           opacity -= 50 / ms;
