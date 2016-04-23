@@ -55,8 +55,20 @@
                <p>
                 Page with a list of my latest projects, source can be found on <a href="https://github.com/jakebesworth?tab=repositories" target="_blank">Github</a>.
                 </p>
+                <h2>Table of Contents</h2>
+                <ul>
+                    <li>
+                        <a href="#title-uminimal">uMinimal</a>
+                    </li>
+                    <li>
+                        <a href="#title-celestis">Celestis</a>
+                    </li>
+                    <li>
+                        <a href="#title-sdl2-game">SDL2-Game</a>
+                    </li>
+                </ul>
                 <time class="datetime" datetime="2016-04-23">2016, April 23rd</time>
-                <h1>uMinimal</h1>
+                <h1 id="title-uminimal">uMinimal</h1>
                 <p>
                 Repository for <a href="https://github.com/jakebesworth/uMinimal" target="_blank">uMinimal</a>.
                 </p>
@@ -67,7 +79,7 @@
                 <p>
                 The purpose of this project was to display my knowledge of PHP, native JavaScript, and solve my personal problems with youtube's interface. Youtube is bloated with recommended videos, a static video player and of course the front page does not function. To resolve these issues uMinimal only shows the videos you want, has a dynamic JS video player where you can drag it around, resize it, and maximize or minimize it.
                 </p>
-                <p>The way uMinimal works is that it builds a simple webpage similar to this website (single-page site) by scraping youtube channels. All options are stored via cookies not server-side such as sort order, or watched videos (such that uMinimal won't display already watched videos if you request it.) Databasing happens in the <i>dynamic/datastore.php</i>, webpage scraping happens in <i>dynamic/scraper.php</i>. Main logic for building the webpage happens in <i>body.php</i> and finally the dynamic JavaScript player and related functions are written in <i>minimal.js</i>.
+                <p>The way uMinimal works is that it builds a simple webpage similar to this website (single-page site) by scraping youtube channels. All options are stored via cookies not server-side such as sort order, or watched videos (such that uMinimal won't display already watched videos if you request it.) Databasing happens in the <em>dynamic/datastore.php</em>, webpage scraping happens in <em>dynamic/scraper.php</em>. Main logic for building the webpage happens in <em>body.php</em> and finally the dynamic JavaScript player and related functions are written in <em>minimal.js</em>.
                 </p>
                 <p>
                 The entire project is probably no more than 1500 lines of code, and is fairly efficient making use of cURL multi interface for a pseudo-threaded cURL request. The parsing happens entirely through regex for a couple of reasons. I tried to using all of the PHP-DOM readers, parsers, and viewers, and they all sort of fail in a number of ways such as imperfect HTML which youtube always returns. The regex I wrote is O(n) where the parsers without their flaws would be O(1) which isn't that big of a deal for the small amount of logic uMinimal does each page load. Also the regex library is platform independant and doesn't require any extra installations. For comparison, the cURL requests take about 95% of runtime, so for optimization reasons the regex is not that much of a concern.
@@ -75,11 +87,32 @@
                 <p>
                 The source code is not youtube dependant, you can swap out the hardcoded URLs and regex to fit any video site, youtube was just used for proof of concept. uMinimal probably breaks ToS so it should not be used commercially.
                 </p>
-                <h1>SDL2-Game</h1>
+                <time class="datetime" datetime="2016-04-16">2016, April 16th</time>
+                <h1 id="title-celestis">Celestis</h1>
+                <p>
+                Repository for <a href="https://github.com/jakebesworth/Celestis" target="_blank">Celestis</a>.
+                </p>
+                <p>
+                Ok. So Celestis is the name given to the server implementation in the guide. Celestis is a fantasy city from Stargate, the birthplace of the Ancients and the Ori. As a small side-tangent, if you haven't watched Stargate, you definitely should, it's probably the best Scifi next to Star Trek. This project is basically an implementation of the Continued Massive Network Game Object Server, which is an emulation software that has a fairly long installation time.
+                </p>
+                <a style="display: inline-block" href="http://aws.amazon.com/what-is-cloud-computing" title="Amazon Web Services" target="_blank">
+                    <img height="60" width="160" class="inline-img" src="http://awsmedia.s3.amazonaws.com/AWS_Logo.png" alt="AWS Cloud Computing">
+                </a>
+                <p>
+                Basically the reason I started this implementation guide project was because the instructions in their guide are incomplete, and don't really give a specific, copy paste implementation that I wanted. So the guide itself leverages an Amazon Web Services EC2 server instance and fixes all the holes in the guide. The guide itself is still fairly long and has a lot of information, so take a look if you have the time!
+                </p>
+                <time class="datetime" datetime="2016-04-10">2016, April 10rd</time>
+                <h1 id="title-sdl2-game">SDL2-Game</h1>
                 <p>
                 Repository for <a href="https://github.com/jakebesworth/SDL2-Game" target="_blank">SDL2-Game</a>.
                 </p>
                 <img class="inline-img" height="1080" width="1980" src="https://raw.githubusercontent.com/jakebesworth/SDL2-game/master/assets/examples/game.png" alt="SDL2-Game Example Image">
+                <p>
+                I named this project SDL2-Game without an actual game name because it's still in development. The project itself is a simple desktop video game written in GNU C11, Make leveraging SDL2 media library. It compiles on GNU/Linux, Windows and OS X.
+                </p>
+                <p>
+                The game itself is a sidescroller asteroids-like video game. The plan was to have it be a more complex rpg game with loot, dungeons and bosses. Unlike uMinimal this game is not complete, and there is still lots to do.
+                </p>
             </div>
         </div>
         <div id="main-work" style="display: none;">
@@ -88,9 +121,6 @@
                 <p>
                 Past work experience and link to work sites
                 </p>
-                <a style="display: inline-block" href="http://aws.amazon.com/what-is-cloud-computing" title="Amazon Web Services" target="_blank">
-                    <img height="60" width="160" class="inline-img" src="http://awsmedia.s3.amazonaws.com/AWS_Logo.png" alt="AWS Cloud Computing">
-                </a>
             </div>
         </div>
         <div id="main-about" style="display: none;">
@@ -105,6 +135,6 @@
             </div>
         </div>
     </div>
+    <input type="image" alt="Click to go to the top of the page" style="display: none;" id="top-page" src="img/up.png" onclick="gotoTop('top-page');" title="go to top">
 </body>
-    <input type="image" style="display: none;" id="top-page" src="img/up.png" onclick="gotoTop('top-page');" title="go to top" />
 </html>
