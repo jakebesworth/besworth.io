@@ -10,7 +10,7 @@ html {
 body {
     background-color: #FFFFFF;
     margin-top: 50px;
-    min-width: 500px;
+    min-width: 700px;
     font-size: 14px;
     line-height: 1.75;
     height: 90%;
@@ -18,20 +18,47 @@ body {
 
 #main {
     color: #222222;
-    background-color: #eeeeee;
-    background: -webkit-linear-gradient(left, #eeeeee, #FFFFFF);
-    background: -o-linear-gradient(right, #FFFFFF, #eeeeee);
-    background: -moz-linear-gradient(right, #FFFFFF, #eeeeee);
-    background: linear-gradient(to right, #eeeeee, #FFFFFF);
+    background-color: #e9e9e9;
+    background: -webkit-linear-gradient(left, #e9e9e9, #FFFFFF);
+    background: -o-linear-gradient(right, #FFFFFF, #e9e9e9);
+    background: -moz-linear-gradient(right, #FFFFFF, #e9e9e9);
+    background: linear-gradient(to right, #e9e9e9, #FFFFFF);
     border-left: 1px solid #43b4ff;
     height: 100%;
 }
 
 #menu {
-    position:relative;
+    position: relative;
     padding: 2px 2px 0px 0px;
     font-size: 0;
     border-bottom: 1px solid #43b4ff;
+}
+
+.nodrag {
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    user-select: none;           /* Non-prefixed version, currently */
+    cursor: default;
+}
+
+#signature {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 30%;
+    pointer-events: none;
 }
 
 .main-content {
@@ -63,8 +90,8 @@ body {
 
 .menu-button-selected {
     border: 1px solid #43b4ff;
-    border-bottom-color: #eeeeee;
-    background-color: #eeeeee;
+    border-bottom-color: #e9e9e9;
+    background-color: #e9e9e9;
     margin: 0;
     margin-right: 2px;
     margin-bottom: -1px;
@@ -80,8 +107,8 @@ body {
     -moz-transition: all 0.3s ease;
     transition: all 0.3s ease;
     border: 1px solid #43b4ff;
-    border-bottom-color: #eeeeee;
-    background-color: #eeeeee;
+    border-bottom-color: #e9e9e9;
+    background-color: #e9e9e9;
     color: #43b4ff;
     cursor: pointer;
     cursor: hand;
@@ -136,7 +163,8 @@ td {
 a:link {
     text-decoration: none;
 }
-img {
+
+.inline-img {
     margin: 75px 0px 35px 75px;
     display: block;
 }
