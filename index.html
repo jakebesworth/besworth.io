@@ -18,13 +18,14 @@
             <button id="menu-projects" class="menu-button" onclick="menu('projects');">Projects</button>
             <button id="menu-work" class="menu-button" onclick="menu('work');">Work</button>
             <button id="menu-about" class="menu-button" onclick="menu('about');">About</button>
-            <img alt="Jake Besworth Signature" src="img/sig1.png" width="500" height="79" id="signature" draggable="false">
+            <button id="menu-contact" class="menu-button" onclick="menu('contact');">Contact</button>
+            <img alt="Jake Besworth Signature" src="img/sig5.png" width="500" height="79" id="signature" draggable="false">
         </div>
     </header>
     <div id="main">
         <div id="main-home" style="display: block;">
             <div class="main-content">
-                <h1>Welcome!</h1>
+                <h1>Welcome</h1>
                 <a href="https://github.com/JakeBesworth/" target="_blank">
                     <img title="Github" width="420" height="420" alt="Github link JB Logo" id="logo" src="img/logo.png">
                 </a>
@@ -34,18 +35,15 @@
                 <p>
                 I try to keep this website up to date with my latest work, projects, and ways to contact me.
                 </p>
-                <time class="datetime" datetime="2016-04-22">2016, April 22nd</time>
+                <time class="datetime" datetime="2016-04-24">2016, April 24th</time>
                 <h1>Latest News</h1>
                 <p>
-                Currently in the midst of building this website (as of 2016, April 22nd). My goal with this website is to have it be responsive, cross-browser compatible and mobile friendly.
-                </p>
-                <p>
-                I also want a place to help host my latest projects and behind the scenes project insight and thoughts. Also, I desperately needed a place to aggregate my co-op work term websites.
+                Just finished up writing and deploying the first version of this website.
                 </p>
                 <time class="datetime" datetime="2016-04-23">2016, April 23rd</time>
                 <h1>Latest Project</h1>
                 <p>
-                You can check out my latest project uMinimal in <a href="#" onclick="menu('projects');">Projects</a>.
+                You can check out my latest project uMinimal dynamic video player web application in <a href="#" onclick="menu('projects');">Projects</a>.
                 </p>
             </div>
         </div>
@@ -119,7 +117,7 @@
             <div class="main-content">
                 <h1>Work</h1>
                 <p>
-                I'm currently taking a Bachelor of Computer with a major in Software Engineering Co-op at the University of Guelph. Here are included my co-op work term reports.
+                Included are my co-op work term reports.
                 </p>
                 <time class="datetime-small" datetime="2015-09-1">September 2015 to December 2015</time>
                 <h3><a href="adknown/">Web Application Developer - Adknown</a></h3>
@@ -136,10 +134,37 @@
         <div id="main-about" style="display: none;">
             <div class="main-content">
                 <h1>About</h1>
+                <h2>Table of Contents</h2>
+                <ul>
+                    <li>
+                        <a href="#title-about-me">About Me</a>
+                    </li>
+                    <li>
+                        <a href="#title-contract-work">Contract Work</a>
+                    </li>
+                    <li>
+                        <a href="#title-resume">Resume</a>
+                    </li>
+                    <li>
+                        <a href="#title-about-this-website">About this Website</a>
+                    </li>
+                </ul>
+                <h1 id="title-about-me">About Me</h1>
                 <p>
-                Resume, about and contact information (links to other places)
+                I'm currently taking a Bachelor of Computing with a major in Software Engineering Co-op at the University of Guelph, in Guelph Ontario Canada. I have a background in web development and system administration with platform-independant desktop applications as an area of interest.
+                </p>
+                <h1 id="title-contract-work">Contract Work</h1>
+                <p>
+                Feel free to contact me via email at my <a href="#" onclick="menu('contact');">Contact</a> page.
                 </p>
                 <p>
+                I have experience working on 50+ <a href="https://wordpress.com/" target="_blank">Wordpress</a> websites and working with custom plugins. This website is also written by me and I have experience using <a href="http://www.google.com/analytics" target="_blank">google analytics solutions</a> such as analytics and adsense to help monitize and track websites daily. I also have experience writing custom user analysizing scripts for websites that analyze millions of users producing thousands of records of data hourly. For my server and database needs I usually use <a href="http://aws.amazon.com/" target="_blank">Amazon Web Services</a> for quality and reliability, or <a href="https://www.digitalocean.com/" target="_blank">DigitalOcean</a> for simple cloud computing.
+                </p>
+                <p>
+                If you're looking for a custom or templated website with your own <em>domain name, regular backups, monitization, user analysis, emails, mobile-friendly, or user accounts shoot me an email.</em> I also specialize in backend, such as APIs for mobile apps.
+                <p>
+                <time class="datetime" datetime="2016-01-07">2016, January 7th</time>
+                <h1 id="title-resume">Resume</h1>
                 My Resume can be viewed on <a href="https://github.com/jakebesworth/Resume/blob/master/resume.pdf">Github</a> or inline below:
                 </p>
                 <object width="100%" height="1000px" data="docs/resume.pdf" type="application/pdf">
@@ -147,6 +172,28 @@
                     You don't seem to have a pdf viewer plugin for this browser. Click the link above to use Github's.
                     </p>
                 </object>
+                <time class="datetime" datetime="2016-04-24">2016, April 24th</time>
+                <h1 id="title-about-this-website">About this Website</h1>
+                <p>
+                The goal with this website was to build it from scratch so I could learn more about HTML5 and CSS3 specifications (also... not get trapped in the tempting confines of bootstrap). The site itself is HTML5 compliant, validity and accessibility audited. The user interface was tested on a number of resolutions, the latest Firefox, Chrome, Internet Explorer, Opera, Safari, on mobile (Android) in an attempt to have it be responsive, cross-browser compatible and mobile friendly.
+                </p>
+            </div>
+        </div>
+        <div id="main-contact" style="display: none;">
+            <div class="main-content">
+                <h1>Contact</h1>
+                <p>
+                <p>
+                If you are interested in contract work or want to get a hold of me feel free to email me:
+                </p>
+                <p>
+                <a href="mailto:jakebesworth@gmail.com" target="_blank">jakebesworth@gmail.com</a>
+                </p>
+                <p>
+                If you missed the many other links to my github, follow me:
+                <p>
+                <a href="https://github.com/jakebesworth" target="_blank">github.com/jakebesworth</a>
+                </p>
             </div>
         </div>
     </div>
