@@ -22,6 +22,15 @@ a:link {
     color: #079dff;
 }
 
+a:link:hover{
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    text-decoration: underline;
+    cursor: pointer;
+    cursor: hand;
+}
+
 #main {
     color: #222222;
     background-color: #e9e9e9;
@@ -200,9 +209,21 @@ button, input {
 
 .datetime {
     color: #9da1a3;
-    margin-top: 20px;
-    position: relative;
     float: right;
+    margin-top: 33px;
+}
+
+.datetime-small {
+    color: #9da1a3;
+    float: right;
+    margin-top: 8px;
+}
+
+.title-child {
+    position: absolute;
+    height: auto;
+    text-align: center;
+    margin: 0;
 }
 
 #top-page {
