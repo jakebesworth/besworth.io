@@ -192,7 +192,7 @@ button, input {
     width: 20%;
 }
 
-#inline-img-right {
+.inline-img-right {
     float: right;
     overflow: hidden;
     width: 25%;
