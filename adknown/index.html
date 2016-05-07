@@ -1,22 +1,28 @@
 <!DOCTYPE html>
 <head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<title>Adknown Work Term</title>
-<link rel="stylesheet" type="text/css" href="style.css">
-<script src="minimal.js"></script>
+<title>Adknown</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Jake Besworth's personal website - Software Developer working in Canada">
+<meta name="keywords" content="Jake,Besworth,Software,Developer,Portfolio">
+<meta name="author" content="Jake Besworth">
+<script src="/js/minimal.js"></script>
+<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+<link rel="icon" type="image/png" href="/img/favicon.png" />
 </head>
 <body>
     <header>
         <div id="menu">
-            <button id="menu-home" class="menu-button-selected" onclick="menu('home');">Home</button>
-            <button id="menu-adknown" class="menu-button" onclick="menu('adknown');">Adknown</button>
-            <button id="menu-jobs" class="menu-button" onclick="menu('jobs');">Job</button>
-            <button id="menu-goals" class="menu-button" onclick="menu('goals');">Goals</button>
-            <button id="menu-conclusions" class="menu-button" onclick="menu('conclusions');">Conclusions</button>
+            <button id="menu-home" class="menu-button-selected" title="Home" onclick="menu('home');">Home</button>
+            <button id="menu-adknown" class="menu-button" title="Adknown" onclick="menu('adknown');">Adknown</button>
+            <button id="menu-jobs" class="menu-button" title="Jobs" onclick="menu('jobs');">Job</button>
+            <button id="menu-goals" class="menu-button" title="Goals" onclick="menu('goals');">Goals</button>
+            <button id="menu-conclusions" class="menu-button" title="Conclusions" onclick="menu('conclusions');">Conclusions</button>
         </div>
     </header>
     <div id="main">
-        <div id="main-home">
+        <div id="main-home" style="display: block;">
             <div class="main-content">
                 <h1>Jake Besworth - Adknown</h1>
                 <p>
@@ -39,7 +45,7 @@
                 At the end of the year the management hosted a <i>Games Day</i> where we spent the day playing competitive games like foosball, Starcraft Original, Mario Kart, pool, and darts. There were even trophies given out to the winners of each event. It was an awesome way to end the 4 months. I even managed to somehow win first place in the Starcraft 1v1 tournament.
                 <p>
             </div>
-            <img src="assets/trophy.png" title="Starcraft 1v1 Trophy" width="25%" height="25%">
+            <img src="/img/trophy.png" class="inline-img" alt="Starcraft 1v1 Trophy" title="Starcraft 1v1 Trophy" width="843" height="1124">
         </div>
         <div id="main-jobs" style="display: none;">
             <div class="main-content">
@@ -51,7 +57,7 @@
                 I worked on many projects including but not limited to working on WordPress sites, cron job scripts, data tracking software, and advertisements. I spent a lot of time researching new technologies and testing out new methods of getting things done. It's amazing how many up and coming free and open source projects exist <a href="https://github.com/explore" target="_blank">online</a>.
                 </p>
             </div>
-            <a href="http://aws.amazon.com/what-is-cloud-computing" title="Amazon Web Services" target="_blank"><img src="http://awsmedia.s3.amazonaws.com/AWS_Logo.png" alt="AWS Cloud Computing"></a>
+            <a href="http://aws.amazon.com/what-is-cloud-computing" title="Amazon Web Services" target="_blank"><img class="inline-img" width="160" height="60" src="http://awsmedia.s3.amazonaws.com/AWS_Logo.png" alt="AWS Cloud Computing"></a>
         </div>
         <div id="main-goals" style="display: none;">
             <div class="main-content">
@@ -82,5 +88,6 @@
             </div>
         </div>
     </div>
+    <input type="image" alt="Click to go to the top of the page" style="display: none;" id="top-page" src="img/up.png" onclick="gotoTop('top-page');" title="go to top">
 </body>
 </html>
