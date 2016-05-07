@@ -1,54 +1,100 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-<!--
-/* index.html - SynApp2 index page
-**
-   +----------------------------------------------------------------------+
-   | SynApp2 Version 1                                                    |
-   +----------------------------------------------------------------------+
-   | Copyright (c) 2007 - 2011 Richard Howell. All rights reserved.       |
-   +----------------------------------------------------------------------+
-   | This source file is subject to version 1.01 of the SynApp2 license,  |
-   | that is bundled with this package in the file LICENSE, and is        |
-   | available through the world-wide-web at the following url:           |
-   | http://www.synapp2.org/license/1_01.txt                              |
-   | If you did not receive a copy of the SynApp2 license and are unable  |
-   | to obtain it through the world-wide-web, please send a note to       |
-   | license@synapp2.org so we can mail you a copy immediately.           |
-   +----------------------------------------------------------------------+
-   | Authors: Richard Howell                                              |
-   |                                                                      |
-   +----------------------------------------------------------------------+
-**
-** http://www.synapp2.org
-**
-** $Id: index.html,v 1.1 2011/06/18 17:55:00 richard Exp $
-*/
--->
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta http-equiv="Pragma" content="no-cache">
-<meta name="generator" content="SynApp2">
-
-<title>
-SynApp2 - Index
-</title>
-
+<title>Dainty</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Jake Besworth's personal website - Dainty Foods work term">
+<meta name="keywords" content="Jake,Besworth,Software,Developer,Portfolio,Dainty,Foods">
+<meta name="author" content="Jake Besworth">
+<script src="/js/minimal.js"></script>
+<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="icon" type="image/png" href="/img/favicon.png" />
 </head>
-<body id="id_body" onload="page_init();">
-
-<!-- //// -->
-
-<script type="text/javascript">
-
-function page_init()
-{
-    window.location = "welcome.htm";
-}
-
-</script>
-
-<!-- //// -->
-
+<body>
+    <header>
+        <div id="menu">
+            <button id="menu-home" class="menu-button" title="Home" onclick="location.href='/'">Home</button>
+            <button id="menu-introduction" class="menu-button-selected" title="Introduction" onclick="menu('introduction');">Dainty</button>
+            <button id="menu-job" class="menu-button" title="Job" onclick="menu('job');">Job</button>
+            <button id="menu-goals" class="menu-button" title="Goals" onclick="menu('goals');">Goals</button>
+            <button id="menu-company" class="menu-button" title="Company" onclick="menu('company');">Company</button>
+            <button id="menu-conclusions" class="menu-button" title="Conclusions" onclick="menu('conclusions');">Conclusions</button>
+        </div>
+    </header>
+    <div id="main">
+        <div id="main-introduction" style="display: block;">
+            <div class="main-content">
+                <h1>Introduction - Dainty</h1>
+                <p>
+                This webpage is a reflection on my summer 2015 work term at Dainty Foods in Windsor as a software developer. The website includes an introduction to my work, my learning goals, the company, and what I got out of my work term.
+                </p>
+            </div>
+        </div>
+        <div id="main-job" style="display: none;">
+            <div class="main-content">
+                <h1>Job Description</h1>
+                <p>
+                My co-op work term at Dainty Foods consisted of working in the IT department as a software developer under the supervision of Mr. Bob Blanchard, Director of IT. The work I was tasked with included two projects, the first being "Integrate Synapp2 free and open-source web application generator with Alfresco Community open-source ECM", and the second "Allow Synapp2 compatability with Informix Dynamic Server RDBMS".
+                </p>
+                <p>
+                My first task was implementing a feature that allowed synapp2 users to upload documents to any given alfresco repository through the synapp2 web applications. This involved learning a few new technologies, as well as how to communicate with an API from PHP. For a brief list of the changes I made to Dainty's instance of Synapp2, you can skim the <a href="/docs/README.txt" target="_blank">README</a></p>
+                </p>
+                <p>
+                As you may have guessed, this website is a shell of the front-end of <a href="http://www.synapp2.org/main/" target="_blank">Synapp2</a>, with a few changes here and there. Synapp2 is a compact, light-weight web-application generator that is roughly 20k lines of HTML, JavaScript, CSS, and PHP. The Synapp2 software was originally started well over 5 years ago by Richard Howell, who I was in contact with during my co-op work term.
+                The concept behind Synapp2 is you have a database (MySQL, Oracle, Informix) and from that database you create a compact web application with the click of a button, which allows users to perform CRUD operations on the database, and create business level reports on the data.
+                My time at Dainty Foods allowed me to learn more about AJAX, MVC framework, PHP, SQL (Informix, MySQL), and Security as just a few topics.
+                </p>
+            </div>
+        </div>
+        <div id="main-goals" style="display: none;">
+            <div class="main-content">
+                <h1>Work Term Goals</h1>
+                <p>
+                One of my goals going into my first co-op work term was to expand my breadth of knowledge of concepts such as database management software (MySQL, and Informix in particular) and web development.
+                A goal related to the first was simply to improve my SQL literacy in not only writing queries, but understanding relations, normalization and being able to write better, more efficient queries.
+                </p>
+                <p>
+                The most obvious goal that I planned for myself was to improve my general problem solving skills, such as seeing what techniques my supervisor put to use. I found that problem solving projects in school, and in the workplace are entirely different.
+                At school you have books, the professor and the TAs as resources to solve your problem, in a very basic sense. At my work I was finding that solutions are a dime a dozen, and implementing the easiest, most efficient, and most applicable solution was much harder than simply finding any one solution.
+                I also planned a less computer-specific related goal, to impove my ability to communicate my design decisions and implementations via documentation and verbally.
+                When developing software, you have to express information in a concise, and detailed manner. Spending a few seconds to describe the actual problem is infinitely more valuable than spending a few hours to get accross the same information but spun a different way.
+                </p>
+                <p>
+                As my final goal to attain during my work term, I wanted to be able to confidently implement my own design decisions when it came to any project I was working on. Early on, I found that Bob would give me a general specification, and I would ask questions along my development. Near the end of the term, I was just implementing my own solutions and he would be pleased with the outcome.
+                Overall, I think that my original goals were attainable, yet challenging, and I definitely improved my knowledge and abilities in all of the areas listed, and gained invaluable experience in doing so.
+                </p>
+            </div>
+        </div>
+        <div id="main-company" style="display: none;">
+            <div class="main-content">
+                <h1>What is Dainty Foods?</h1>
+                <p><a href="http://daintyrice.ca/" target="_blank">Dainty Foods</a> is a primarily rice based company that's origins date back to <a href="http://daintyrice.ca/en/subcontent.php?page=D12000" target="_blank">1882</a>. Dainty Foods in Windsor was a fairly mid-sized branch, having 20 people in the office and probably less then that in the factory at any given day, but don't quote me on that. When you first travel to Dainty, you can expect to see open land, the parking lot filled with cars and trucks carrying various food products, and maybe run into a few employees showing up for 8am. The main entrance leads to either Quality Assurance, the factory, the kitchen, or the main office which accommodated management, shipping, and IT.
+                </p>
+                <p>One thing that is guaranteed at Dainty is that everyone is very helpful and kind. Coming to Windsor, my plan was to take transit to work, which with a bit of waiting, might be an hour travel time. However, most of the <a href="#" title="A few names, Mary&#178, Kim, Lauri, Elly, Dan, Stella, and Tiffany">employees</a> offered to give me rides to the bus wait, or home, I probably got a ride for 75% of my travels, and I did not ask anyone for a ride once. You could attribute this sort of almost family work environment with the fact that most employees were working there for long periods of time, some approaching 2 and 3 decades! A saying which I heard was "people tend to stay working at Dainty" and that could not be any more true.
+                </p>
+                <p>
+                Once a year, at the end of the summer, all the employees attend a barbeque, where Jeremy and others cook up a bunch of food, and prizes are given away. With my poor luck, I did not win anything, but overall it was an event to remember. The food was great, the people were happy, and it was a chance to see everyone that worked at Dainty. Whether you're working in the albeit small, but important IT department, or the factory, Dainty Foods is a welcoming and friendly place that will have you wanting to stay for years. If you're in need of help or even a ride to work, you can count on offers from everyone to help you out.
+                </p>
+            </div>
+        </div>
+        <div id="main-conclusions" style="display: none;">
+            <div class="main-content">
+                <h1>What did I get out of my work term?</h1>
+                <p>
+                Coming into my first work term I was definitely excited and eager to learn more about computing. The first week was a major learning experience, spending 8 hours a day learning and problem solving, and it continued for 4 more months. I'd say that my most valuable gain from this experience, was in fact, having experience, knowing what is was like to work on software daily.
+                </p>
+                <p>
+                I would definitely recommend co-op to anyone wanting to start their career early, and having a unique perspective coming back to school in the following semesters. I can say confidently that I learned more than I thought I would this summer, and I'm excited to take that back to the classroom and put my new knowledge to academic use.
+                </p>
+                <p>
+                I'd like to give some thanks to Bob Blanchard for supervising me, mentoring me, and guiding me through my tasks. I'd also like to thank Sue Racine for having a hand in my hiring and for covering for me when I rushed to get to work instead of clocking in. Lastly, of course a big thanks to everyone else in the office. It was enjoyable meeting you all when I did, and maybe we'll see each other in the future.
+                </p>
+            </div>
+        </div>
+    </div>
+    <input type="image" alt="Click to go to the top of the page" style="display: none;" id="top-page" src="/img/up.png" onclick="gotoTop('top-page');" title="go to top">
 </body>
 </html>
