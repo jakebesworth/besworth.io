@@ -192,6 +192,9 @@ button, input {
     width: 20%;
 }
 
+#aws-logo {
+    width: auto;
+}
 .inline-img-right {
     float: right;
     overflow: hidden;
