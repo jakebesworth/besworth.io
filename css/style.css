@@ -188,16 +188,11 @@ button, input {
 }
 
 #logo {
-    float: right;
     border-radius: 25%;
-    overflow: hidden;
     width: 20%;
-    height: auto;
-    margin-left: 100px;
-    margin-bottom: 100px;
 }
 
-#trophy {
+#inline-img-right {
     float: right;
     overflow: hidden;
     width: 25%;
