@@ -197,6 +197,15 @@ button, input {
     margin-bottom: 100px;
 }
 
+#trophy {
+    float: right;
+    overflow: hidden;
+    width: 25%;
+    height: auto;
+    margin-left: 100px;
+    margin-bottom: 100px;
+}
+
 #logo:hover {
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
