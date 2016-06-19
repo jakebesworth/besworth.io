@@ -36,15 +36,15 @@
                 <p>
                 I try to keep this website up to date with my latest work, projects, and ways to contact me.
                 </p>
-                <time class="datetime" datetime="2016-04-24">2016, April 24th</time>
-                <h1>Latest News</h1>
-                <p>
-                Just finished up writing and deploying the first version of this website.
-                </p>
-                <time class="datetime" datetime="2016-04-23">2016, April 23rd</time>
+                <time class="datetime" datetime="2016-06-18">2016, June 18th</time>
                 <h1>Latest Project</h1>
                 <p>
-                You can check out my latest project uMinimal dynamic video player web application in <a href="#" onclick="menu('projects');">Projects</a>.
+                You can check out my latest project Simple-SDL2-Audio, native audio mixing without the use of SDL_Mixer at <a href="#" onclick="menu('projects');">Projects</a>.
+                </p>
+                <time class="datetime" datetime="2016-05-01">2016, May 1st</time>
+                <h1>Latest News</h1>
+                <p>
+                Started work at a new job in Mississauga Ontario Canada as a (full-stack) Application Developer in the Enterprise Architecture team at Symcor Inc.
                 </p>
             </div>
         </div>
@@ -57,15 +57,29 @@
                 <h2>Table of Contents</h2>
                 <ul>
                     <li>
+                        <a href="#title-simple-sdl2-audio">Simple SDL2 Audio</a>
+                    </li>
+                    <li>
                         <a href="#title-uminimal">uMinimal</a>
                     </li>
                     <li>
                         <a href="#title-celestis">Celestis</a>
                     </li>
                     <li>
-                        <a href="#title-sdl2-game">SDL2-Game</a>
+                        <a href="#title-sdl2-game">Naquadah Asteroids</a>
                     </li>
                 </ul>
+                <time class="datetime" datetime="2016-06-18">2016, June 18th</time>
+                <h1 id="title-simple-sdl2-audio">Simple SDL2 Audio</h1>
+                <p>
+                Repository for <a href="https://github.com/jakebesworth/Simple-SDL2-Audio" target="_blank">Simple-SDL2-Audio</a>.
+                </p>
+                <p>
+                While working on my next SDL2 RPG style game, I needed to implement audio. The most recommended method is to use SDL_Mixer, but that adds a ton of features I didn't need and added more complexity to cross-platform compilability. While browsing the web, I didn't find many solutions, the closest thing to a <em> simple one file audio library was this <a href="https://gist.github.com/armornick/3447121" target="_blank">gist</a>. This solution was not very generic, couldn't mix multiple audio sources, and used deprecated functions. This led me to spending time developing a nice compatible, modern, light weight solution.
+                </p>
+                <p>
+                This library is a simple two files, licensed under Apache2.0 License, and anyone is free to use it how they like if that falls under the terms of the license. There is a simple test.c file with an example of how to load music and sounds and how easy the library is to use. With SDL2 you can make any sort of desktop application from a video game to a media player to anything else, and my hope with release with code as FLOSS is to allow others to benifit from the research I did in trying to implement native SDL2 audio.
+                </p>
                 <time class="datetime" datetime="2016-04-23">2016, April 23rd</time>
                 <h1 id="title-uminimal">uMinimal</h1>
                 <p>
@@ -101,16 +115,13 @@
                 The reason I started this project was because the default installation guide is incomplete, and doesn't really give a specific, copy paste implementation that I wanted. So the guide itself leverages an Amazon Web Services EC2 server instance and fixes all the holes in the default guide.
                 </p>
                 <time class="datetime" datetime="2016-04-10">2016, April 10rd</time>
-                <h1 id="title-sdl2-game">SDL2-Game</h1>
+                <h1 id="title-sdl2-game">Naquadah Asteroids</h1>
                 <p>
-                Repository for <a href="https://github.com/jakebesworth/SDL2-Game" target="_blank">SDL2-Game</a>.
+                Repository for <a href="https://github.com/jakebesworth/SDL2-Game" target="_blank">Naquadah-Asteroids</a>.
                 </p>
                 <img class="inline-img" height="1080" width="1980" src="https://raw.githubusercontent.com/jakebesworth/SDL2-game/master/assets/examples/game.png" alt="SDL2-Game Example Image">
                 <p>
-                I named this project SDL2-Game without a concrete title because it's still in development. The project is a simple desktop video game written in GNU C11 and Make, leveraging SDL2 media library. It compiles on GNU/Linux, Windows and OS X.
-                </p>
-                <p>
-                The game itself is a top-down shooter, asteroids-like video game. The plan is to make it a more complex rpg game, with loot, dungeons, and bosses. Unlike uMinimal, this game is not complete, and there is still lots to do.
+                The project is a simple desktop video game written in GNU C11 and Make, leveraging SDL2 media library. It compiles on GNU/Linux, Windows and OS X. The game itself is a top-down shooter, asteroids-like video game.
                 </p>
             </div>
         </div>
