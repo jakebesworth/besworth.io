@@ -6,6 +6,7 @@ html {
     font-family: 'Roboto', sans-serif;
     font-size: 0.75em;
     min-width: 850px;
+    background-color: #FFFFFF;
 }
 
 body {
@@ -21,7 +22,7 @@ a:link {
     color: #079dff;
 }
 
-a:link:hover{
+a:link:hover {
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
     transition: all 0.3s ease;
@@ -32,17 +33,12 @@ a:link:hover{
 
 #main {
     color: #222222;
-    background-color: #e9e9e9;
-    background: -webkit-linear-gradient(left, #e9e9e9, #FFFFFF);
-    background: -o-linear-gradient(right, #FFFFFF, #e9e9e9);
-    background: -moz-linear-gradient(right, #FFFFFF, #e9e9e9);
-    background: linear-gradient(to right, #e9e9e9, #FFFFFF);
     min-height: 100%;
 }
 
 #menu {
     position: relative;
-    padding: 2px 2px 0px 0px;
+    padding: 40px 0;
     font-size: 0;
 }
 
@@ -78,18 +74,16 @@ a:link:hover{
     display: inline-block;
     max-width: 1000px;
     min-width: 75%;
-    padding-top: 15px;
-    padding-left: 45px;
-    padding-right: 45px;
-    padding-bottom: 100px;
+    padding: 15px 40px 100px;
     margin: 0 auto;
     text-align: left;
-    font-size: 16pt;
+    font-size: 18pt;
     position: relative;
+    color: #333333;
 }
 
 .menu-button {
-    background-color: #FFFFFF;
+    background-color: transparent;
     color: #526269;
     padding: 5px 12px 5px 12px;
     margin: 0;
@@ -100,7 +94,7 @@ a:link:hover{
 }
 
 .menu-button-selected {
-    background-color: #FFFFFF;
+    background-color: transparent;
     margin: 0;
     margin-right: 2px;
     margin-bottom: -1px;
@@ -114,7 +108,7 @@ a:link:hover{
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
     transition: all 0.3s ease;
-    background-color: #FFFFFF;
+    background-color: transparent;
     color: #079dff;
     text-decoration: underline;
     cursor: pointer;
