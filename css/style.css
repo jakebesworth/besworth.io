@@ -11,7 +11,6 @@ html {
 
 body {
     background-color: #FFFFFF;
-    margin-top: 50px;
     font-size: 14px;
     line-height: 1.75;
     height: 100%;
@@ -40,6 +39,7 @@ a:link:hover {
     position: relative;
     padding: 40px 0;
     font-size: 0;
+    border-bottom: 1px solid #dddddd;
 }
 
 .nodrag {
@@ -90,7 +90,7 @@ a:link:hover {
     margin-right: 2px;
     margin-bottom: -1px;
     text-decoration: none;
-    font-size: 20pt;
+    font-size: 18pt;
 }
 
 .menu-button-selected {
@@ -101,7 +101,7 @@ a:link:hover {
     text-decoration: none;
     color: #079dff;
     padding: 5px 12px 5px 12px;
-    font-size: 20pt;
+    font-size: 18pt;
 }
 
 .menu-button:hover{
