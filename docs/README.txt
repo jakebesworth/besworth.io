@@ -14,7 +14,7 @@
 ------------------------------------------------------------------------------------------------------------------------------
 
 
-    Jake Besworth  -   jakebesworth@gmail.com - Alfresco Informix Integration
+    Jake Besworth  - Alfresco Informix Integration
 
     Richard Howell -   richard@synapp2.org    - Synapp2
 
