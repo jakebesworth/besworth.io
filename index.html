@@ -87,18 +87,15 @@
                 </p>
                 <img class="inline-img" height="811" width="1908" src="https://raw.githubusercontent.com/jakebesworth/uMinimal/master/img/example.png" alt="uMinimal Homepage">
                 <p>
-                uMinimal is a lightweight web application that displays youtube videos in a clean way without use of any APIs. The web application is written in PHP, HTML, CSS, and JavaScript and it leverages MySQL relational database management software as well as PHP-cURL, and PHP-MySQL.
+                uMinimal is a lightweight web application that displays videos in a clean way without use of any APIs. The web application is written in PHP, HTML, CSS, and JavaScript and it leverages MySQL relational database management software as well as PHP-cURL, and PHP-MySQL.
                 </p>
                 <p>
-                The purpose of this project was to fix my issues with JavaScript video players as a whole, and in this instance, youtube's interface. Youtube is bloated with recommended videos, a static video player, and the front page does not function perfectly. To resolve these issues uMinimal only shows the videos you want, and has a dynamic JS video player which you can drag around, resize, maximize, or minimize.
+                The purpose of this project was to fix my issues with JavaScript video players as a whole, and video user interfaces. To resolve these issues uMinimal only shows the videos you want, and has a dynamic JS video player which you can drag around, resize, maximize, or minimize.
                 </p>
-                <p>The way uMinimal works is that it builds a simple webpage (single-page site) by scraping youtube channels. All options are stored via cookies, not server-side, such as sort order, or watched videos (such that uMinimal won't display already watched videos if you request it.) Databasing happens in the <em>dynamic/datastore.php</em>, webpage scraping happens in <em>dynamic/scraper.php</em>. Main logic for building the webpage happens in <em>body.php</em>, and lastly the dynamic JavaScript player and related functions are stored in <em>minimal.js</em>.
+                <p>The way uMinimal works is that it builds a simple webpage (single-page site) by scraping webpages, such as youtube channels. All options are stored via cookies, not server-side, such as sort order, or watched videos (such that uMinimal won't display already watched videos if you request it.) Databasing happens in the <em>dynamic/datastore.php</em>, webpage scraping happens in <em>dynamic/scraper.php</em>. Main logic for building the webpage happens in <em>body.php</em>, and lastly the dynamic JavaScript player and related functions are stored in <em>minimal.js</em>.
                 </p>
                 <p>
                 The entire project is probably no more than 1500 lines of code, and is fairly efficient, making use of cURL multi interface for pseudo-threaded cURL requests. The parsing happens entirely through regex for a couple of reasons. I initially used the many PHP-DOM readers, parsers, and viewers, and they all sort of failed in a number of ways, such as when given imperfect HTML. The regex I wrote is O(n) where the parsers without their flaws would be O(1) which isn't that large of a gap for the small amount of logic uMinimal does each page load. Also, the regex library is platform independant and doesn't require any extra installation. For comparison, the cURL requests take about 95% of runtime, so for optimization reasons the regex is not that much of a concern.
-                </p>
-                <p>
-                The source code is not dependant on youtube, you can swap out the hardcoded URLs and regex to fit any video site, youtube was just used for proof of concept. uMinimal probably breaks ToS so it should not be used commercially.
                 </p>
                 <time class="datetime" datetime="2016-04-16">2016, April 16th</time>
                 <h1 id="title-celestis">Celestis</h1>
@@ -106,7 +103,7 @@
                 Repository for <a href="https://github.com/jakebesworth/Celestis" target="_blank">Celestis</a>.
                 </p>
                 <p>
-                The word Celestis is the name given to the project, which is a server implementation guide. Celestis is a city from the T.V. show Stargate SG1. This project is an implementation of the Continued Massive Network Game Object Server, which is an emulation software that has a long installation guide.
+                This project is an implementation of the Continued Massive Network Game Object Server, which is an emulation software that has a long installation guide.
                 </p>
                 <a style="display: inline-block" href="http://aws.amazon.com/what-is-cloud-computing" title="Amazon Web Services" target="_blank">
                     <img height="60" width="160" class="inline-img" src="http://awsmedia.s3.amazonaws.com/AWS_Logo.png" alt="AWS Cloud Computing">
