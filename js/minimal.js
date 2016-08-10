@@ -1,3 +1,10 @@
+window.onload = function() {
+    if(defined(window.location.hash)) {
+
+        menu(window.location.hash.substring(1));
+    }
+}
+
 window.onscroll = function() {
 
     element = document.getElementById('top-page');
@@ -56,6 +63,13 @@ function menu(id) {
     var clickedElement = document.getElementById('main-' + id);
 
     if(defined(clickedButton) && defined(clickedElement) && clickedElement.style.display === 'none') {
+
+        if(id === 'home') {
+            window.location.hash = '';
+        }
+        else {
+            window.location.hash = id;
+        }
 
         var buttons = document.getElementsByTagName('button');
 
