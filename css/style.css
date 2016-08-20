@@ -123,6 +123,7 @@ a:link:hover {
     margin-left: 5px;
     margin-right: 2px;
 }
+
 select {
     margin-left: 10px;
     margin-bottom: 10px;
@@ -178,8 +179,8 @@ button, input {
     overflow: hidden;
     width: 25%;
     height: auto;
-    margin-left: 100px;
-    margin-bottom: 100px;
+    margin-left: 10%;
+    margin-bottom: 10%;
 }
 
 #logo:hover {
