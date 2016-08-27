@@ -1,28 +1,22 @@
 window.onload = function() {
+
+    /* Set page and hash location on page load */
     if(defined(window.location.hash)) {
 
-        menu(window.location.hash.substring(1));
+        var hash = window.location.hash;
+        menu((window.location.hash.substring(1)).split('/')[0]);
+        window.location.hash = hash;
     }
 }
 
 window.onscroll = function() {
 
-    element = document.getElementById('top-page');
+    var element = document.getElementById('top-page');
 
     if(defined(element) && element.style.display === 'none') {
 
         fadeIn(element, 300, 0.75);
     }
-}
-
-function setCookie(name, value, path, expiration) {
-
-    document.cookie = name + "=" + value + ';path=' + path + ';expires=' + expiration;
-}
-
-function deleteCookie(name) {
-
-    document.cookie = name + "=;expires=Thu, 01, Jan 1970 00:00:01 GMT;";
 }
 
 function refresh() {
@@ -31,25 +25,27 @@ function refresh() {
 
 function gotoTop(id) {
 
-    element = document.getElementById(id);
-    fadeOut(element, 300, 0.75);
-    location.href = '#';
-}
+    var element = document.getElementById(id);
 
-function hideshow(id, ms) {
-    element = document.getElementById(id);
+    if(defined(window.location.hash)) {
 
-    if(defined(element) && defined(ms)) {
-
-        if(element.style.display === 'none') {
-
-            fadeIn(element, ms, 1);
-        }
-        else {
-
-            fadeOut(element, ms, 1);
-        }
+        var hash = window.location.hash.split('/')[0];
     }
+
+    if(defined(element)) {
+
+        var timeout = setTimeout(function() {
+
+            fadeOut(element, 300, 0.75);
+
+            if(defined(hash)) {
+
+                window.location.hash = hash;
+            }
+        }, 100);
+    }
+
+    window.location.hash = '#';
 }
 
 function defined(element) {
@@ -136,8 +132,8 @@ function fadeOut(element, ms, opacity) {
             element.style.display = "none";
           }
 
-          element.style.opacity = opacity;
-          element.style.filter = "alpha(opacity=" + opacity * 100 + ")";
+            element.style.opacity = opacity;
+            element.style.filter = "alpha(opacity=" + opacity * 100 + ")";
         }, 50);
     }
 }
