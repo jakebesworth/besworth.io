@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- generic meta -->
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- favicon -->
+    <!-- link rel="apple-touch-icon" href="" -->
+    <!-- link rel="icon" href="" -->
+    <!-- unique meta -->
+    <meta name="description" content="wow such dank">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <title>The Seed Wireframe</title>
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/fontawesome.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar starts -->
+    <nav class="navbar navbar-dark navbar-fixed-top bg-inverse">
+        <button class="navbar-toggler" type="button">
+            <i class="fa fa-1x fa-bars" aria-hidden="true"></i>
+        </button>
+      <a class="navbar-brand" href="#" style="float:none">The Seed Price Management System</a>
+    </nav>
+    <!-- end top Navbar -->
+    <div class="container-fluid">
+      <div class="row">
+
+        <!-- side Navbar tingz -->
+        <div class="col-sm-3 col-md-2 sidebar">
+            <div class="row" style="margin-bottom: 15px">
+              <div class="col-lg-13">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Search for...">
+                  <span class="input-group-btn">
+                    <button class="btn btn-secondary" type="button"><i class="fa fa-search fa-1" aria-hidden="true"></i></button>
+                  </span>
+                </div>
+              </div>
+            </div>
+          <ul class="nav nav-sidebar">
+            <li class="sidebar-title">Dashboard</li>
+
+            <li><a href="home.html">Home</a></li>
+            <li><a href="account.html">My Account<span class="sr-only">(current)</span></a></li>
+            <li class="active"><a href="">Data</a></li>
+            <li><a href="analytics.html">Visualization</a></li>
+            <li><a href="index.html">Log Out</a></li>
+          </ul>
+        </div>
+        <!-- end side Navbar -->
+
+        <div class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 main">
+		  <!--To display data, select a spreadsheet from the dropdown below.-->
+          <h1>Data</h1>
+          <form>
+          <div class="form-group">
+	    	  <label for="dropdown" style="display:block;font-size:.7rem">(Select a spreadsheet to have it automatically displayed)</label>
+
+			  <select class="form-control" id="spreadsheet-select" style="display:inline-block;width:auto;" onchange="$('#download-btn').removeClass('disabled')">
+				  <option value="" disabled selected>Select a spreadsheet</option>
+				  <option>Spreadsheet 1</option>
+				  <option>Spreadsheet 2</option>
+				  <option>Spreadsheet 3</option>
+			  </select>
+
+                <a class="btn btn-secondary submit-green disabled" role="button" id="download-btn" href="res/images/table.jpg" download>Download Spreadsheet</a>
+				<label class="pull-right btn btn-secondary btn-file submit-green">
+					 Upload Spreadsheet
+					 <input id="file-excel" type="file" style="display: none;">
+				</label>
+
+			  <table class="table" style="display:none">
+				<thead>
+				  <tr>
+					<th>#</th>
+					<th>Column 1</th>
+					<th>Column 2</th>
+					<th>Column 3</th>
+				  </tr>
+				</thead>
+				<tbody>
+				  <tr>
+					<th scope="row">1</th>
+					<td>Value</td>
+					<td>Value</td>
+					<td>Value</td>
+				  </tr>
+				  <tr>
+					<th scope="row">2</th>
+					<td>Value</td>
+					<td>Value</td>
+					<td>Value</td>
+				  </tr>
+				  <tr>
+					<th scope="row">3</th>
+					<td>Value</td>
+					<td>Value</td>
+					<td>Value</td>
+				  </tr>
+				  <tr>
+					<th scope="row">4</th>
+					<td>Value</td>
+					<td>Value</td>
+					<td>Value</td>
+				  </tr>
+				</tbody>
+			  </table>
+
+            </div>
+        </form>
+        </div>
+      </div>
+    </div>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- At the bottom for speed, dont argue with THE_JAKE -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/tether.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script async src="js/holder.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script async src="js/ie10-viewport-bug-workaround.js"></script>
+    <script async src="js/minimal.js"></script>
+
+    <script>
+
+      $(document).ready(function() {
+		  $("select").change(function() {
+			$('.table').show();
+		  });
+
+		  document.getElementById("file-excel").onchange = function(e) { 
+		  	alert("File uploaded successfully");
+		  };
+	
+      });
+	</script>
+
+</body>
+</html>
