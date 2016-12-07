@@ -236,6 +236,10 @@ button, input {
         font-size: 14px !important;
         width: 80% !important;
     }
+
+    .datetime {
+        float: none !important;
+    }
 }
 
 /* Regular phones */
@@ -245,6 +249,10 @@ button, input {
         font-size: 12px !important;
         width: 90% !important;
     }
+
+    .datetime {
+        float: none !important;
+    }
 }
 
 /* Outdated phones like mine */
@@ -253,5 +261,9 @@ button, input {
     html {
         font-size: 12px !important;
         width: 100% !important;
+    }
+
+    .datetime {
+        float: none !important;
     }
 }
