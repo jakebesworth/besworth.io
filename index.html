@@ -21,18 +21,17 @@
             <button id="menu-work" class="menu-button" title="Work" onclick="menu('work');">Work</button>
             <button id="menu-about" class="menu-button" title="About" onclick="menu('about');">About</button>
             <button id="menu-contact" class="menu-button" title="Contact" onclick="menu('contact');">Contact</button>
-            <!--img id="signature" alt="Jake Besworth Signature" src="img/sig2.png" width="500" height="79" draggable="false"-->
         </div>
     </header>
     <div id="main">
         <div id="main-home" style="display: block;">
             <div class="main-content">
-                <h1>Welcome</h1>
+                <h1>Hello World</h1>
                 <a href="https://github.com/JakeBesworth/" target="_blank" rel="nofollow noopener noreferrer">
                     <img title="Github" width="420" height="420" alt="Github link JB Logo" id="logo" class="inline-img-right" src="img/logo.png">
                 </a>
                 <p>
-                This is the website of Jake Besworth, software developer and student attending the University of Guelph, in beautiful Guelph Ontario Canada. I'm planning to graduate in 2018, but in the meantime I'm working, freelancing, and doing a few open source side projects.
+                I'm a software developer and student attending the University of Guelph, in beautiful Guelph Ontario Canada. I'm planning to graduate in 2018, but in the meantime I'm working (co-op), and creating and contributing to a few free/libre open source side projects.
                 </p>
                 <p>
                 I try to keep this website up to date with my latest work, projects, and ways to contact me.
@@ -40,12 +39,12 @@
                 <time class="datetime" datetime="2016-06-18">2016, June 18th</time>
                 <h1>Latest Project</h1>
                 <p>
-                You can check out my latest project Simple-SDL2-Audio, native audio mixing without the use of SDL_Mixer at the Projects page.
+                You can check out my latest project Simple-Color-Conversions, a simple, portable, compact, RGB to HSV and CYM(K) color conversion library. Written in C, C++ compatible.
                 </p>
-                <time class="datetime" datetime="2016-05-01">2016, May 1st</time>
+                <time class="datetime" datetime="2016-12-20">2016, December 20th</time>
                 <h1>Latest News</h1>
                 <p>
-                Started work at a new job in Mississauga Ontario Canada as a Full Stack Web Developer in the Enterprise Architecture team at Symcor Inc.
+                I was hired at <a href="https://tulip.io/" target="_blank" rel="nofollow noopener noreferrer">Tulip Retail</a> as Full-Stack Developer in Toronto Ontario Canada. Work term starts in 2017, looking forward to meeting some great people and experiencing all that is Toronto!
                 </p>
             </div>
         </div>
@@ -57,6 +56,9 @@
                 </p>
                 <h2>Table of Contents</h2>
                 <ul>
+                    <li>
+                        <a href="#projects/simple-color-conversions">Simple Color Conversions</a>
+                    </li>
                     <li>
                         <a href="#projects/simple-sdl2-audio">Simple SDL2 Audio</a>
                     </li>
@@ -70,6 +72,20 @@
                         <a href="#projects/sdl2-game">Naquadah Asteroids</a>
                     </li>
                 </ul>
+                <time class="datetime" datetime="2016-12-20">2016, December 20th</time>
+                <h1 id="projects/simple-color-conversions">Simple Color Conversions</h1>
+                <p>
+                Repository for <a href="https://github.com/jakebesworth/Simple-Color-Conversions" target="_blank" rel="nofollow noopener noreferrer">Simple-Color-Conversions</a>.
+                </p>
+                <p>
+                While working on my portable video game framework (soon<sup>TM</sup>), I needed to implement color shimmering, such as white to red, or a rainbow of colors moving from one end of the spectrum to the other. There were many libraries available on Github but not many in pure C without any bloat, and it gave me the opportunity to learn about color conversion.
+                </p>
+                <p>
+                I started this project mainly to convert from RGB to HSV so I could easily traverse Hue to get 360&deg; to have a shimmering rainbow color. I also needed saturation in order to get a white to X Color shimmer. Almost all of the libraries I looked at used the <a href="https://en.wikipedia.org/wiki/List_of_color_spaces_and_their_uses" target="_blank" rel="nofollow noopener noreferrer">Wikipedia article</a> to get the formulas for conversion. I looked into the sources used in the Wiki, and found they seemed to taken from <a href="http://sites.biology.duke.edu/johnsenlab/pdfs/tech/colorconversion.pdf" target="_blank" rel="nofollow noopener noreferrer">"Color Space Conversions" by Adrian Ford and Alan Roberts</a>. I ended up using this paper to write my C library and found a minor error in the paper and corrected it <a href="https://github.com/jakebesworth/Simple-Color-Conversions/blob/master/color.c#L184" target="_blank" rel="nofollow noopener noreferrer">here in color.c</a>
+                </p>
+                <p>
+                Overall it was interesting to read an academic paper and implement the formulas given, and even find an error and correct it. Along with the audio library written below, my game framework is coming to fruition and it may be the next project you see here.
+                </p>
                 <time class="datetime" datetime="2016-06-18">2016, June 18th</time>
                 <h1 id="projects/simple-sdl2-audio">Simple SDL2 Audio</h1>
                 <p>
