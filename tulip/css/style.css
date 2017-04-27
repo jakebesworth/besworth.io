@@ -1,0 +1,11 @@
+a:link {
+    color: #f15f77 !important;
+}
+
+.menu-button-selected {
+    color: #f15f77 !important;
+}
+
+.menu-button:hover{
+    color: #f15f77 !important;
+}
