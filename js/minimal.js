@@ -9,41 +9,24 @@ window.onload = function() {
     }
 }
 
-window.onscroll = function() {
-
-    var element = document.getElementById('top-page');
-
-    if(defined(element) && element.style.display === 'none') {
-
-        fadeIn(element, 300, 0.75);
-    }
-}
-
 function refresh() {
     window.location = window.location.href;
 }
 
 function gotoTop(id) {
 
-    var element = document.getElementById(id);
-
     if(defined(window.location.hash)) {
 
         var hash = window.location.hash.split('/')[0];
     }
 
-    if(defined(element)) {
+    var timeout = setTimeout(function() {
 
-        var timeout = setTimeout(function() {
+        if(defined(hash)) {
 
-            fadeOut(element, 300, 0.75);
-
-            if(defined(hash)) {
-
-                window.location.hash = hash;
-            }
-        }, 100);
-    }
+            window.location.hash = hash;
+        }
+    }, 100);
 
     window.location.hash = '#';
 }
