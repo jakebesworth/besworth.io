@@ -1,4 +1,4 @@
-# Personal Website for Jake Besworth at https://besworth.io
+# Personal Website for Jake Besworth
 
 ## About
 
