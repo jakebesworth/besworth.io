@@ -11,3 +11,6 @@ Currently website should be deployed with firebase at https://besworth.io also h
 ## License
 
 COPYING file has the GPLv3 license, feel free to use all the code.
+
+## TODO
+- Use outer header div, display: flex, justify-content: space-between, align-items: center for datetimes
