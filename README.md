@@ -2,15 +2,12 @@
 
 ## About
 
-Personal website I created for my co-op work term reports, but has helped me with understanding HTML5 and CSS3 better. No frameworks were used, also works ok on mobile.
+Personal website for some basic info about me.
 
 ## Deployment
 
-Currently website should be deployed with firebase at https://besworth.io also http://besworth.me should redirect.
+Website is deployed on firebase at https://besworth.io
 
 ## License
 
 COPYING file has the GPLv3 license, feel free to use all the code.
-
-## TODO
-- Use outer header div, display: flex, justify-content: space-between, align-items: center for datetimes
