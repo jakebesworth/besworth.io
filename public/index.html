@@ -31,10 +31,7 @@
                     <img title="Github" width="292" height="292" alt="Github link with gravatar" id="logo" class="inline-img-right" src="https://avatars1.githubusercontent.com/u/10157328?v=3%26s=460">
                 </a>
                 <p>
-                I'm a software developer working at <a href="https://tulip.com/" target="_blank" rel="nofollow noopener noreferrer">Tulip</a> and a recent graduate of the University of Guelph. I have created and contributed to a few free/libre open source side projects.
-                </p>
-                <p>
-                I try to keep this website up to date with my latest work, projects, and ways to contact me.
+                I'm a software developer working at <a href="https://tulip.com/" target="_blank" rel="nofollow noopener noreferrer">Tulip</a> and a graduate of the University of Guelph. I enjoy creating and contributing to free/libre open source side projects in my spare time.
                 </p>
             </div>
         </div>
@@ -42,179 +39,21 @@
             <div class="main-content">
                 <h1>Projects</h1>
                <p>
-                Page with a list of my latest projects, source can be found on <a href="https://github.com/jakebesworth?tab=repositories" target="_blank" rel="nofollow noopener noreferrer">Github</a>.
-                </p>
-                <h2>Table of Contents</h2>
-                <ul>
-                    <li>
-                        <a href="#projects/alu68-QMK">ALU68 - QMK</a>
-                    </li>
-                    <li>
-                        <a href="#projects/noctilus">Noctilus</a>
-                    </li>
-                    <li>
-                        <a href="#projects/simple-color-conversions">Simple Color Conversions</a>
-                    </li>
-                    <li>
-                        <a href="#projects/simple-sdl2-audio">Simple SDL2 Audio</a>
-                    </li>
-                    <li>
-                        <a href="#projects/uminimal">uMinimal</a>
-                    </li>
-                    <li>
-                        <a href="#projects/celestis">Celestis</a>
-                    </li>
-                    <li>
-                        <a href="#projects/sdl2-game">Naquadah Asteroids</a>
-                    </li>
-                </ul>
-                <time class="datetime" datetime="2017-09-10">2017, September 10th</time>
-                <h1 id="projects/alu68-QMK">ALU68 QMK keymap</h1>
-                <p>
-                Repository for <a href="https://github.com/jakebesworth/ALU68-QMK" target="_blank" rel="nofollow noopener noreferrer">ALU68-QMK</a>.
-                </p>
-                <p>
-                I bought a custom ALU68 Canadian mechanical keyboard and wanted to flash it with my specific keymapping. There was not an addition for the board in QMK, so I made the keymap code for it. I'll soon create a pull request with the main QMK project.
-                </p>
-                <time class="datetime" datetime="2017-04-23">2017, April 23rd</time>
-                <h1 id="projects/noctilus">Noctilus Bootstrap 4 Template</h1>
-                <p>
-                Repository for <a href="https://github.com/jakebesworth/Noctilus" target="_blank" rel="nofollow noopener noreferrer">Noctilus</a>.
-                </p>
-                <img class="inline-img" width="2548" height="1262" src="https://raw.githubusercontent.com/jakebesworth/Noctilus/master/public/img/example.png" alt="Noctilus Homepage">
-                <p>
-                Noctilus started as a project for me to learn from the very start a simple PHP7, Bootstrap 4 and other technology full stack. It was a fun summer project in 2016, and gave me more insight into setting up a server with TLS on AWS with a stack of modern technologies.
-                </p>
-                <time class="datetime" datetime="2016-12-20">2016, December 20th</time>
-                <h1 id="projects/simple-color-conversions">Simple Color Conversions</h1>
-                <p>
-                Repository for <a href="https://github.com/jakebesworth/Simple-Color-Conversions" target="_blank" rel="nofollow noopener noreferrer">Simple-Color-Conversions</a>.
-                </p>
-                <p>
-                While working on my portable video game framework (soon<sup>TM</sup>), I needed to implement color shimmering, such as white to red, or a rainbow of colors moving from one end of the spectrum to the other. There were many libraries available on Github but not many in pure C without any bloat, and it gave me the opportunity to learn about color conversion.
-                </p>
-                <p>
-                I started this project mainly to convert from RGB to HSV so I could easily traverse Hue to get 360&deg; to have a shimmering rainbow color. I also needed saturation in order to get a white to X Color shimmer. Almost all of the libraries I looked at used the <a href="https://en.wikipedia.org/wiki/List_of_color_spaces_and_their_uses" target="_blank" rel="nofollow noopener noreferrer">Wikipedia article</a> to get the formulas for conversion. I looked into the sources used in the Wiki, and found they seemed to taken from <a href="http://sites.biology.duke.edu/johnsenlab/pdfs/tech/colorconversion.pdf" target="_blank" rel="nofollow noopener noreferrer">"Color Space Conversions" by Adrian Ford and Alan Roberts</a>. I ended up using this paper to write my C library and found a minor error in the paper and corrected it <a href="https://github.com/jakebesworth/Simple-Color-Conversions/blob/master/color.c#L184" target="_blank" rel="nofollow noopener noreferrer">here in color.c</a>
-                </p>
-                <p>
-                Overall it was interesting to read an academic paper and implement the formulas given, and even find an error and correct it. Along with the audio library written below, my game framework is coming to fruition and it may be the next project you see here.
-                </p>
-                <time class="datetime" datetime="2016-06-18">2016, June 18th</time>
-                <h1 id="projects/simple-sdl2-audio">Simple SDL2 Audio</h1>
-                <p>
-                Repository for <a href="https://github.com/jakebesworth/Simple-SDL2-Audio" target="_blank" rel="nofollow noopener noreferrer">Simple-SDL2-Audio</a>.
-                </p>
-                <p>
-                While working on my next RPG style game, I needed to implement audio in SDL2. The most recommended method is to use SDL_Mixer, but that library adds a ton of features I didn't need, and added more complexity to cross-platform compilability. While browsing the web, I didn't find many solutions, the closest thing to a <em>simple one file audio library</em> was this <a href="https://gist.github.com/armornick/3447121" target="_blank" rel="nofollow noopener noreferrer">gist</a>. This solution wasn't very generic, couldn't mix multiple audio sources, and used deprecated functions. This led me to spend time developing a simple, compatible, and modernized library solution.
-                </p>
-                <p>
-                This library is simply just two files you include in your project, licensed under Apache2.0 License, and anyone is free to use it how they like if that falls under the terms of the license. There is a simple test.c file with an example of how to load music and sounds and how easy the library is to use. With SDL2 you can make any sort of desktop application from a video game to a media player to anything else, and my hope with the release of this code as FLOSS is that it allows others to benifit from the research I did in trying to implement native SDL2 audio.
-                </p>
-                <time class="datetime" datetime="2016-04-23">2016, April 23rd</time>
-                <h1 id="projects/uminimal">uMinimal</h1>
-                <p>
-                Repository for <a href="https://github.com/jakebesworth/uMinimal" target="_blank" rel="nofollow noopener noreferrer">uMinimal</a>.
-                </p>
-                <img class="inline-img" width="1908" height="811" src="https://raw.githubusercontent.com/jakebesworth/uMinimal/master/public/img/example.png" alt="uMinimal Homepage">
-                <p>
-                uMinimal is a lightweight web application that displays videos in a clean way without use of any APIs. The web application is written in PHP, HTML5, CSS3, and native JavaScript and it leverages MySQL relational database management software as well as PHP-cURL, and PHP-MySQL.
-                </p>
-                <p>
-                The purpose of this project was to fix my issues with JavaScript video players as a whole, and video user interfaces. To resolve these issues uMinimal only shows the videos you want, and has a dynamic JS video player which you can drag around, resize, maximize, or minimize.
-                </p>
-                <p>The way uMinimal works is that it builds a simple webpage (single-page site) by scraping webpages, such as youtube channels. All options are stored via cookies, not server-side, such as sort order, or watched videos (such that uMinimal won't display already watched videos if you request it.) Databasing happens in the <em>dynamic/datastore.php</em>, webpage scraping happens in <em>dynamic/scraper.php</em>. Main logic for building the webpage happens in <em>body.php</em>, and lastly the dynamic JavaScript player and related functions are stored in <em>minimal.js</em>.
-                </p>
-                <p>
-                The entire project is probably no more than 1500 lines of code, and is fairly efficient, making use of cURL multi interface for pseudo-threaded cURL requests. The parsing happens entirely through regex for a couple of reasons. I initially used the many PHP-DOM readers, parsers, and viewers, and they all sort of failed in a number of ways, such as when given imperfect HTML. The regex I wrote is theoretically O(n), whereas the parsers without their flaws would be O(1) which isn't that large of a gap for the small amount of logic uMinimal does each page load. The regex library is platform independant and doesn't require any extra installation. For comparison, the cURL requests take about 95% of runtime, so for optimization reasons the regex is not that much of a concern.
-                </p>
-                <time class="datetime" datetime="2016-04-16">2016, April 16th</time>
-                <h1 id="projects/celestis">Celestis</h1>
-                <p>
-                Repository for <a href="https://github.com/jakebesworth/Celestis" target="_blank" rel="nofollow noopener noreferrer">Celestis</a>.
-                </p>
-                <p>
-                This project is an implementation of the Continued Massive Network Game Object Server, which is an emulation software that has a long installation guide.
-                </p>
-                <a style="display: inline-block" href="https://aws.amazon.com/what-is-cloud-computing" title="Amazon Web Services" target="_blank" rel="nofollow noopener noreferrer">
-                    <img width="160" height="60" class="inline-img" src="https://awsmedia.s3.amazonaws.com/AWS_Logo.png" alt="AWS Cloud Computing">
-                </a>
-                <p>
-                The reason I started this project was because the default installation guide is incomplete, and doesn't really give a specific, copy paste implementation that I wanted. So the guide itself leverages an Amazon Web Services EC2 server instance running Ubuntu Server 14.04 and fixes all the holes in the default guide.
-                </p>
-                <time class="datetime" datetime="2016-04-10">2016, April 10rd</time>
-                <h1 id="projects/sdl2-game">Naquadah Asteroids</h1>
-                <p>
-                Repository for <a href="https://github.com/jakebesworth/Naquadah-Asteroids" target="_blank" rel="nofollow noopener noreferrer">Naquadah-Asteroids</a>.
-                </p>
-                <img class="inline-img" width="1920" height="1080" src="https://raw.githubusercontent.com/jakebesworth/SDL2-game/master/assets/examples/game.png" alt="SDL2-Game Example Image">
-                <p>
-                The project is a simple desktop video game written in GNU C11 and Make, leveraging SDL2 media library. It compiles on GNU/Linux, Windows and OS X. The game itself is a top-down shooter, asteroids-like video game. I made this as an introduction to SDL2 for myself as I am now working on another, larger project.
-                </p>
-            </div>
-        </div>
-        <div id="main-work" style="display: none;">
-            <div class="main-content">
-                <h1>Work</h1>
-                <p>
-                Included are my co-op work term reports.
-                </p>
-                <time class="datetime-small" datetime="2017-09-11">May 2017 to August 2017</time>
-                <strong><a href="wave/">Software Engineer - Wave</a></strong>
-                <p>
-                 The linked webpage is a reflection on my 2017 Summer work term at Wave as a Software Engineer. This is my final co-op work term report.
-                </p>
-                <time class="datetime-small" datetime="2017-04-23">January 2017 to April 2017</time>
-                <strong><a href="tulip/">Full Stack Developer - Tulip</a></strong>
-                <p>
-                 The linked webpage is a reflection on my 2017 Winter work term at Tulip as a Full Stack Web Developer. Included in my fourth work term report is an overview of Tulip, a description of my job, my goals, and what I took away from from my experience.
-                </p>
-                <time class="datetime-small" datetime="2016-08-27">May 2016 to August 2016</time>
-                <strong><a href="symcor/">Web Developer - Symcor</a></strong>
-                <p>
-                 This webpage is a reflection on my 2016 Summer work term at Symcor as a Full Stack Web Developer. Included in my third work term report is an overview of Symcor, a description of my job, my goals, and what I took away from my experience.
-                </p>
-                <time class="datetime-small" datetime="2015-09-01">September 2015 to December 2015</time>
-                <strong><a href="adknown/">Web Application Developer - Adknown</a></strong>
-                <p>
-                 This webpage is a reflection on my 2015 Fall work term at Adknown as a Web Application Developer. Included in my second work term report is an overview of life at Adknown, a description of my job, my goals, and what I got out of it.
-                </p>
-                <time class="datetime-small" datetime="2015-05-01">May 2015 to August 2015</time>
-                <strong><a href="dainty/">Software Developer - Dainty</a></strong>
-                <p>
-                This webpage is a reflection on my summer 2015 work term at Dainty Foods in Windsor as a software developer. This webpage includes an introduction to my work, my learning goals, the company, and what I got out of my work term.
+                You can find my latest projects on <a href="https://github.com/jakebesworth?tab=repositories" target="_blank" rel="nofollow noopener noreferrer">Github.com</a>.
                 </p>
             </div>
         </div>
         <div id="main-about" style="display: none;">
             <div class="main-content">
                 <h1>About</h1>
-                <h2>Table of Contents</h2>
-                <ul>
-                    <li>
-                        <a href="#about/about-me">About Me</a>
-                    </li>
-                    <li>
-                        <a href="#about/about-website">About this Website</a>
-                    </li>
-                    <li>
-                        <a href="#about/resume">Resume</a>
-                    </li>
-                </ul>
-                <h1 id="about/about-me">About Me</h1>
                 <p>
-                I have recently completed a Bachelor of Computing with a major in Software Engineering (Co-op) at the University of Guelph, in Guelph Ontario Canada. I have a background in full stack web development and system administration with platform-independant desktop applications as an area of interest.
+                I have completed a Bachelor of Computing degree with a major in Software Engineering (Co-op) at the University of Guelph - in Guelph Ontario, Canada. I have a background in full stack web development.
                 </p>
                 <p>
-                I recently signed a full-time employment with <a href="https://tulip.com/" target="_blank" rel="nofollow noopener noreferrer">Tulip</a>, which is an iOS mobile platform built exclusively for next generation retail store associates to offer a world-class omnichannel experience. I am a part of the Innovations team, technically leading partnerships and cutting edge products.
+                I currently work full-time on the Checkout team at <a href="https://tulip.com/" target="_blank" rel="nofollow noopener noreferrer">Tulip</a>. Tulip offers an iOS mobile platform built for luxury retail store associates.
                 </p>
-                <time class="datetime" datetime="2016-01-07">2016, January 7th</time>
                 <h1 id="about/resume">Resume</h1>
-                My Resume can be viewed on <a href="https://github.com/jakebesworth/Resume/blob/master/resume.pdf">Github</a> or inline below:
-                <object style="width: 100%;position:relative;" height="1000" data="docs/resume.pdf" type="application/pdf">
-                    <p>
-                    You don't seem to have a pdf viewer plugin for this browser. Click the link above to use Github's.
-                    </p>
-                </object>
+                My Resume can be viewed on <a href="https://github.com/jakebesworth/Resume/blob/master/resume.pdf">Github</a>
             </div>
         </div>
         <div id="main-contact" style="display: none;">
